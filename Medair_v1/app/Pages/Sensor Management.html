@@ -1,0 +1,158 @@
+<h2 class="page-header">Sensor Management</h2>
+
+<div class="btn-group" role="group" ng-init="tab = 1">
+    <button class="btn btn-default" ng-click="tab = 1">Add Sensor</button>
+    <button class="btn btn-default" ng-click="tab = 2">Remove Sensor</button>
+    <button class="btn btn-default" ng-click="tab = 3">Activate Sensor</button>
+    <button class="btn btn-default" ng-click="tab = 4">Deactivate Sensor</button>
+</div>
+<br>
+<br>
+<br>
+    <div ng-show="tab == 1" class="content-box ">
+
+        <div class="panel-heading"><h3 class="panel-title"><strong> Add a New Sensor</strong></h3></div>
+            <div>
+            <div id="dvMap1" style="width: 850px; height: 500px"></div>
+             <br>
+                <p class="text-center text-muted" if-loading id="overlay">Loading
+
+                <img src="../bower_components/loadingcheck.gif" style="padding-top: 300px; padding-left: 30px" width="100px" >
+
+            </p>
+
+        <form>
+        <h4 class="col-lg-offset-4">Please Enter the Latitude and Longitude:</h4><br>
+
+        <div class="alert alert-{{alType}} col-lg-6 col-lg-offset-3 fade in" id="alert"  ng-if="alShow">
+            <strong>{{message.type=="danger"?"Fail":"Success"}}!! </strong>{{message.content}}
+            <a  class="close" ng-click="hideAlert()">&times;</a>
+        </div>
+        <input id=lat  placeholder="Latitude" style="width:200px " class="col-lg-offset-5 form-control col-lg-1 text-primary" required  ng-model="latitude" ng-click><br>
+
+        <input id=lng placeholder="Longitude" style="width:200px " class="col-lg-offset-5 form-control col-lg-1 text-primary" required ng-model="longitude">
+        <br />
+
+        <br>
+        <input id="cityName"  placeholder="What's the CityName?"  style="width:200px " class="col-lg-offset-5 form-control col-lg-1 text-primary" required ng-model="city"><br>
+        <br>
+        <label for="sel1" class="col-lg-offset-5">Select Type of Sensor (select one):</label><br>
+
+        <select ng-model="sType" class="col-lg-offset-5 dropdown-header" ng-options="k as v for (k, v) in sTypes" >
+            <option value="">Select Type</option>
+
+
+        </select>
+        <br>
+        <button type="submit" ng-click="addSensor()" class="btn-success center-block">Request Sensor</button>
+    </form>
+            </div>
+        </div>
+
+
+    <div ng-show="tab == 2" class="content-box">
+        <div class="panel-heading"><h3 class="panel-title"><strong> Remove a Sensor</strong></h3></div>
+        <form>
+            <h4 class="col-lg-offset-3">Please Enter the Sensor Details of the Sensor to remove:</h4><br>
+
+
+            <div class="alert alert-{{alType2}} col-lg-6 col-lg-offset-3 fade in" id="alert2"  ng-if="alShow">
+                <strong>{{message.type=="danger"?"Fail":"Success"}}!! </strong>{{message.content}}
+                <a  class="close" ng-click="hideAlert()">&times;</a>
+            </div>
+            <notification ng-model="message"></notification>
+            <input id=sId  placeholder="Sensor Id" style="width:200px " class="col-lg-offset-5 form-control col-lg-1 text-primary" required  ng-model="sensorId" ><br>
+            <br>
+            <input id=sName  placeholder="Sensor Name" style="width:200px " class="col-lg-offset-5 form-control col-lg-1 text-primary"   ><br>
+            <br>
+            <input id=sType  placeholder="Sensor Type" style="width:200px " class="col-lg-offset-5 form-control col-lg-1 text-primary"  ><br>
+            <br>
+
+
+            <button type="submit" ng-click="removeSensor()" class="btn-success center-block">Remove Sensor</button>
+        </form>
+    </div>
+
+
+</div>
+<div ng-show="tab == 3" class="content-box">
+    <div class="panel-heading"><h3 class="panel-title"><strong> Activate a Sensor</strong></h3></div>
+    <form>
+        <h4 class="col-lg-offset-2">Please Enter the Sensor Details of the Sensor you want to Activate:</h4><br>
+        <input id=sId2  placeholder="Sensor Id" style="width:200px " class="col-lg-offset-5 form-control col-lg-1 text-primary" required  ng-model="sensorId2" ><br>
+        <br>
+        <input id=sName2  placeholder="Sensor Name" style="width:200px " class="col-lg-offset-5 form-control col-lg-1 text-primary"  ><br>
+        <br>
+        <input id=sType2  placeholder="Sensor Type" style="width:200px " class="col-lg-offset-5 form-control col-lg-1 text-primary"  ><br>
+        <br>
+        <input id=status  placeholder="Status" style="width:200px " class="col-lg-offset-5 form-control col-lg-1 text-primary"  ><br>
+        <br>
+
+
+        <button type="submit" ng-click="subscribe()" class="btn-success center-block">Activate Sensor</button>
+    </form>
+</div>
+
+
+<div ng-show="tab == 4" class="content-box">
+    <div class="panel-heading"><h3 class="panel-title"><strong> Deactivate a Sensor</strong></h3></div>
+    <form>
+        <h4 class="col-lg-offset-2">Please Enter the Sensor Details of the Sensor you want to Deactivate:</h4><br>
+        <input id=sId3  placeholder="Sensor Id" style="width:200px " class="col-lg-offset-5 form-control col-lg-1 text-primary" required  ng-model="sensorId3" ><br>
+        <br>
+        <input id=sName3  placeholder="Sensor Name" style="width:200px " class="col-lg-offset-5 form-control col-lg-1 text-primary"  ><br>
+        <br>
+        <input id=sType3  placeholder="Sensor Type" style="width:200px " class="col-lg-offset-5 form-control col-lg-1 text-primary"  ><br>
+        <br>
+        <input id=status2  placeholder="Status" style="width:200px " class="col-lg-offset-5 form-control col-lg-1 text-primary"  ><br>
+        <br>
+
+
+        <button type="submit" ng-click="unsubscribe()" class="btn-success center-block">Deactivate</button>
+    </form>
+</div>
+
+<script>
+    $(function() {
+        $("[data-hide]").on("click", function () {
+            $("." + $(this).attr("data-hide")).hide();
+        });
+    });
+</script>
+<!--<script type="text/javascript" src="../js/Maps.js"></script>
+<script>
+    //Map Code
+/*
+    function getCity() {
+    var lat = document.getElementById('lat').value;
+        var lng = document.getElementById('lng').value;
+        console.log(lat);
+        var url ="https://maps.googleapis.com/maps/api/geocode/json?latlng="+lat+","+lng;
+        console.log(url);
+            var httpReq = new XMLHttpRequest();
+            httpReq.open("GET",url,false);
+            httpReq.send();
+            var res = httpReq.responseText;
+            //console.log(res);
+            var resForm = JSON.parse(res);
+            //console.log(resForm);
+        if(resForm.status!="ZERO_RESULTS") {
+            var str = resForm['results'][1]['formatted_address'];
+            var lastIndex = str.lastIndexOf(",");
+            str = str.substring(0, lastIndex);
+            var pieces = str.split(/[\,]+/);
+            var newcity = pieces[pieces.length-2] ;
+            //console.log(resultForm);
+            document.getElementById('cityName').value =newcity;
+        }
+        else {
+            window.alert("Invalid Location");
+            document.getElementById('cityName').value='';
+        }
+
+    }*/
+    //ADD Sensor
+
+
+
+</script>

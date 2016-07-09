@@ -1,0 +1,155 @@
+<h1 class="page-header">Dashboard Monitor</h1>
+<p class="text-center text-muted" if-loading id="overlay">
+
+    <img src="../bower_components/loadingcheck.gif" style="padding-top: 300px; padding-left: 30px" width="100px" >
+
+</p>
+<style>
+    #containers {
+        height: 400px;
+        min-width: 310px;
+        max-width: 800px;
+        margin: 0 auto;
+    }
+
+    #pressure {
+        height: 400px;
+        min-width: 310px;
+        max-width: 800px;
+        margin: 0 auto;
+    }
+
+    #myBtnt{
+        background: white url(btn.png) no-repeat top;
+        width: 200px;
+        height: 120px;
+        color:black;
+        border: none;
+
+    }
+
+    #myBtnt:active,
+    #myBtnt:focus
+    {
+        border:0.1em #0080ff ; /* here configure as your needs */
+        color:#0080ff;
+    }
+    #myBtnp{
+        background: white url(bm.png) no-repeat top;
+        width: 200px;
+        height: 100px;
+        color:black;
+        border: none;
+
+    }
+
+    #myBtnp:active,
+    #myBtnp:focus
+    {
+        border:0.1em #0080ff ; /* here configure as your needs */
+        color:#0080ff;
+    }
+    #myBtnh{
+        background: white url(pres.png) no-repeat top;
+        width: 200px;
+        height: 100px;
+        color:black;
+        border: none;
+
+    }
+
+    #myBtnh:active,
+    #myBtnh:focus
+    {
+        border:0.1em #0080ff ; /* here configure as your needs */
+        color:#0080ff;
+    }
+    #myBtna{
+        background: white url(aq.png) no-repeat top;
+        width: 200px;
+        height: 100px;
+        color:black;
+        border: none;
+
+    }
+
+    #myBtna:active,
+    #myBtna:focus
+    {
+        border:0.1em #0080ff ; /* here configure as your needs */
+        color:#0080ff;
+    }
+</style>
+
+<div id="containers" class="col-sm-offset-1">Wait while chart is loading...</div>
+<div id='buttonstemp'></div></br>
+</br>
+<div>
+<table>
+
+    <td> <input ng-repeat = "datas in d.dt1" type="button" ng-click="fun(d.h[0])" class="col-sm-offset-1" value={{datas}} id="myBtnt" data-toggle="modal" data-target="#myModal"> </input> </td>
+
+</table>
+</div>
+</br>
+</br>
+
+<div id="pressure" class="col-sm-offset-1">Wait while chart is loading for pressure...</div>
+<div id='buttonspres'></div></br>
+</br>
+<div>
+<table>
+
+    <td> <input ng-repeat = "datas in d.dp1" type="button" ng-click="funp(d.ph[0])" class="col-sm-offset-1" value={{datas}} id="myBtnp" data-toggle="modal" data-target="#myModal"> </input> </td>
+
+</table>
+</div>
+</br>
+</br>
+<div id="humidity" class="col-sm-offset-1">Wait while chart is loading for humidity</div>
+<div id='buttonshumi'></div></br>
+</br>
+<div>
+<table>
+
+    <td> <input ng-repeat = "datas in d.dh1" type="button" ng-click="funh(d.hh[0])" class="col-sm-offset-1" value={{datas}} id="myBtnh" data-toggle="modal" data-target="#myModal"> </input> </td>
+
+</table>
+</div>
+
+</br>
+</br>
+<div id="airqualityindex">Wait while chart is loading for Air Quality Index</div>
+<div id='buttonsairq'></div></br>
+</br>
+<div>
+<table>
+
+    <td> <input ng-repeat = "datas in d.da1" type="button" ng-click="funa(d.ah[0])"   value={{datas}} id="myBtna" data-toggle="modal" data-target="#myModal"> </input> </td>
+
+</table>
+</div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            </div>
+            <div class="modal-body"><div id="popdiv">
+            </div></div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!--Modal ends-->
+
+
+
+
+
+

@@ -1,0 +1,18 @@
+<h2 class="page-header">Location of Sensors</h2>
+<div class="btn-group" role="group" ng-init="">
+    <button class="btn btn-default" ng-click="showMarkers(cityA)">Air Quality Check</button>
+    <button class="btn btn-default" ng-click="showMarkers(cityT)">Temperature Sensors</button>
+    <button class="btn btn-default" ng-click="showMarkers(cityH)">Humidity Sensors</button>
+    <button class="btn btn-default" ng-click="showMarkers(cityP)">Pressure Sensors</button>
+</div>
+<br/>
+<br/>
+<div class="content-box">
+    <br>
+<div id="dvMap" style="width: 850px; height: 500px"></div>
+<p class="text-center text-muted" if-loading id="overlay">
+
+    <img src="../bower_components/loadingcheck.gif" style="padding-top: 300px; padding-left: 30px" width="100px" >
+
+</p>
+</div>
