@@ -86,41 +86,4 @@ module.exports = function(app){
 	});
 
 
-	app.get('/api/boats', function(req, res){
-			//API to find all boats
-
-			/*			
-				Parameters:
-					none
-				Output:
-					An array of boats in JSON format, in the same format as above
-					Example: [{ id: def456, capacity: 8, name: "Amazon Express" }, ...]
-			*/
-
-			boat.find({}, function(err, boats){
-				if(!err){
-					//console.log(docs);
-
-					//building JSON response to sent.
-					var boatsArr = [];
-
-					//creating JSON for each boat data to push in to boatsArr
-					for (var i = 0; i < boats.length; i++) {
-					    var boatStr = {
-					    	id : boats[i].id,
-					    	capacity : boats[i].capacity,
-					    	name : boats[i].name 
-					    };
-
-					    boatsArr.push(boatStr);
-					}
-					//returning data to the client
-					return res.status(200).json(boatsArr);
-				} else {
-
-					return res.status(500).json(errorResponse(err.errmsg, 500));
-				}
-				
-			});
-	});
 }
