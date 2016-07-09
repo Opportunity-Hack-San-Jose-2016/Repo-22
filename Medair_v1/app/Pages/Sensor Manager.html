@@ -1,0 +1,44 @@
+<h2 class="page-header">Sensor Manager</h2>
+
+<div class="btn-group" role="group" ng-init="tab = 1">
+    <button class="btn btn-default" ng-click="tab = 1">Subscribe</button>
+    <button class="btn btn-default" ng-click="tab = 2">UnSubscribe Sensor</button>
+
+</div>
+
+<div ng-show="tab == 1" class="content-box">
+    <div class="panel-heading"><h3 class="panel-title"><strong> Subscribe a Sensor</strong></h3></div>
+    <form>
+        <h4 class="col-lg-offset-2">Please Enter the Sensor Details of the Sensor you want to Subscribe:</h4><br>
+        <input id=sId2  placeholder="Sensor Id" style="width:200px " class="col-lg-offset-5 form-control col-lg-1 text-primary" required  ng-model="sensorId2" ><br>
+        <br>
+        <input id=sName2  placeholder="Sensor Name" style="width:200px " class="col-lg-offset-5 form-control col-lg-1 text-primary"  ><br>
+        <br>
+        <input id=sType2  placeholder="Sensor Type" style="width:200px " class="col-lg-offset-5 form-control col-lg-1 text-primary"  ><br>
+        <br>
+        <input id=status  placeholder="Status" style="width:200px " class="col-lg-offset-5 form-control col-lg-1 text-primary"  ><br>
+        <br>
+
+
+        <button type="submit" ng-click="subscribe()" class="btn-success center-block">Subscribe Sensor</button>
+    </form>
+</div>
+
+
+<div ng-show="tab == 2" class="content-box">
+    <div class="panel-heading"><h3 class="panel-title"><strong> Unsubscribe a Sensor</strong></h3></div>
+    <form>
+        <h4 class="col-lg-offset-2">Please Enter the Sensor Details of the Sensor you want to Unsubscribe:</h4><br>
+        <input id=sId3  placeholder="Sensor Id" style="width:200px " class="col-lg-offset-5 form-control col-lg-1 text-primary" required  ng-model="sensorId3" ><br>
+        <br>
+        <input id=sName3  placeholder="Sensor Name" style="width:200px " class="col-lg-offset-5 form-control col-lg-1 text-primary"  ><br>
+        <br>
+        <input id=sType3  placeholder="Sensor Type" style="width:200px " class="col-lg-offset-5 form-control col-lg-1 text-primary"  ><br>
+        <br>
+        <input id=status2  placeholder="Status" style="width:200px " class="col-lg-offset-5 form-control col-lg-1 text-primary"  ><br>
+        <br>
+
+
+        <button type="submit" ng-click="unsubscribe()" class="btn-success center-block">UnSubscribe</button>
+    </form>
+</div>

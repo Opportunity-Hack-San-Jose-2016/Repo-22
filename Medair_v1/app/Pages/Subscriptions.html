@@ -1,0 +1,30 @@
+
+<h3>Sensor Subscriptions</h3>
+<p class="text-center text-muted" if-loading id="overlay">
+
+    <img src="../bower_components/loadingcheck.gif" style="padding-top: 300px; padding-left: 30px" width="100px" >
+
+</p>
+<table class="table table-hover" align="center">
+    <tr>
+        <td>SensorID</td>
+        <td>Location</td>
+        <td>Type</td>
+        <td>Typecode</td>
+        <td>Status</td>
+    </tr>
+    <!--  <tr ng-if="lists.typecode === 1" ng-repeat = "lists in list">  -->
+    <tr ng-repeat = "lists in list">
+        <td>{{lists.id}}</td>
+        <td>{{lists.location}}</td>
+        <td>{{lists.type}}</td>
+        <td>{{lists.typecode}}</td>
+        <td>{{lists.status}}</td>
+
+
+
+    </tr>
+</table>
+<hr>
+
+</div>
