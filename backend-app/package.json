@@ -1,0 +1,32 @@
+{
+  "name": "backend-app",
+  "version": "1.0.0",
+  "description": "This is a backend API for opportunity hack",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Opportunity-Hack-San-Jose-2016/Repo-22.git"
+  },
+  "keywords": [
+    "hackathon",
+    "paypal"
+  ],
+  "author": "Mitul, Vishv",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Opportunity-Hack-San-Jose-2016/Repo-22/issues"
+  },
+  "homepage": "https://github.com/Opportunity-Hack-San-Jose-2016/Repo-22#readme",
+  "dependencies": {
+    "body-parser": "^1.15.2",
+    "express": "^4.14.0",
+    "express-jwt": "^3.4.0",
+    "express-session": "^1.14.0",
+    "jsonwebtoken": "^7.0.1",
+    "mongoose": "^4.5.3"
+  }
+}
