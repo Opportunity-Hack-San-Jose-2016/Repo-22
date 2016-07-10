@@ -9,9 +9,9 @@ var schema = new Schema({
 	locations : [{
 		location : {lat:String, lng: String},
 	}],
-	contactPerson : { type: String, required : false, unique : true},
-	contactNumber : { type : String, required : true},
-	email : { type: String, required : false, unique : true},
+	contactPerson : { type: String, required : false},
+	contactNumber : { type : String, required : false},
+	email : { type: String, required : false},
 	role : { type : String, required : true, default: "org"},
 }, { strict : false});
 
