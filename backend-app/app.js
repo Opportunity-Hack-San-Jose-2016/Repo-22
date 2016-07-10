@@ -22,6 +22,7 @@ require('./app/routes/refugee')(app);
 require('./app/routes/organization')(app);
 require('./app/routes/volunteer')(app);
 require('./app/routes/serviceRegistration')(app);
+require('./app/routes/organization')(app);
 
 // app.get('*', function(req, res, next) {
 //   var err = new Error();
