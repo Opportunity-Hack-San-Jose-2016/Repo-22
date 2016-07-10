@@ -5,7 +5,7 @@ It handles the requests for
 (2) Retrieving all boats - /api/boats - GET
 */
 
-var refugee = require('../models/refugeeModel'); //to use boats schema
+var Organization = require('../models/organizationModel'); //to use boats schema
 var Service = require('../models/serviceModel');
 var validator = require('validator'); // for data validator
 var errorResponse = require('./errorResponse');
@@ -15,7 +15,7 @@ module.exports = function(app){
     app.post('/api/organizations/create', function(req, res){
 
         //parse request body
-        var input = JSON.parse(req.body.refugee);
+        var input = req.body.organization;
         
         var orgName = req.body.organization.name;
         var orgLocations = req.body.organization.locations;
@@ -25,14 +25,13 @@ module.exports = function(app){
         var email = req.body.organization.email;
 
         //Validate if request body is not malfunctioned json
-        if(validator.isNull(input)) 
+        if(input)
         {
             //store in the database
-            console.log("Database store has been called");
 
-            if((validator.isNull(orgName)) ||
-               (validator.isNull(orgLocations)) ||
-               (validator.isNull(orgService)))
+            if((validator.isNull(orgName))) 
+              // || (validator.isNull(orgLocations))
+              // || (validator.isNull(orgService)))
             {
               return res.status(422).json(errorResponse("Missing data for the request.", 503));
             }
