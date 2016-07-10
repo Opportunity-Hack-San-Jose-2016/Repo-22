@@ -3,3 +3,9 @@
     font-size: 1.2em;
     font-weight: bold;
 }
+.no-gutters {
+    margin-left: 0;
+    margin-right: 0;
+    padding-left: 0;
+    padding-right: 5px;
+}

@@ -49,14 +49,15 @@
                             <form class="content-wrap" name="SignUp" ng-cloak>
                                 <h6>MedAir Registration</h6>
                                 <input type="text" id="uName" class="form-control" placeholder="UNHCR ID" required autofocus ng-model="id">
-                                <input type="text" id="firstName" class="form-control" placeholder="First Name" required ng-model="firstName">
-                                <input type="text" id="lastName" class="form-control" placeholder="Last Name" required ng-model="lastName">
                                 <input type="password" id="uPassword" class="form-control" placeholder="Password" required ng-model="passWord">
+                                <div class="col-xs-6 no-gutters"><input type="text" id="firstName" class="form-control" placeholder="First Name" required ng-model="firstName"></div>
+                                <div class="col-xs-6 no-gutters"><input type="text" id="lastName" class="form-control" placeholder="Last Name" required ng-model="lastName"></div>
+
                                 <!--<input class="form-control" type="password" id="passwordConfirm" placeholder="Confirm Password" required oninput="check(this)">-->
-                                <input type="text" id="age" class="form-control" placeholder="Age" required ng-model="age">
-                                <input type="text" id="gender" class="form-control" placeholder="Gender" required ng-model="gender">
-                                <input type="text" id="phonenumber" class="form-control" placeholder="Phone Number" required ng-model="phonenumber">
-                                <input type="text" id="email" class="form-control" placeholder="Email" required ng-model="email">
+                                <div class="col-xs-6 no-gutters"><input type="text" id="age" class="form-control" placeholder="Age" required ng-model="age"></div>
+                                <div class="col-xs-6 no-gutters"><input type="text" id="gender" class="form-control" placeholder="Gender" required ng-model="gender"></div>
+                                <div class="col-xs-6 no-gutters"><input type="text" id="phonenumber" class="form-control" placeholder="Phone Number" required ng-model="phonenumber"></div>
+                                <div class="col-xs-6 no-gutters"><input type="text" id="email" class="form-control" placeholder="Email" required ng-model="email"></div>
                                 <div class="checkbox">
                                   <label><input type="checkbox" value="" ng-model="disabled">Is this person disabled?</label>
                                 </div>
