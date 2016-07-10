@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Add organizations</title>
+    <title>Add volunteers</title>
     <link href="../../bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="../../css/navbar-fixed-top.css" rel="stylesheet"><!--Try and Remove-->
     <link href="../../css/styles.css" rel="stylesheet">
@@ -25,43 +25,60 @@
 </style>
  <body>
 
+
      <div class="container">
+     <h2 class="title">Add New Volunteer</h2>
 
         <div class="row">
             
+
+
+{
+    "volunteer": {
+    "email(email)":"vis19@asdf.com",
+    "name(name)":"Vishv Brahmbhatt",
+    "password(password)":"somepass",
+    "organizationId(organization_id)":"org1234",
+    "contactNumber(phone)":"1234343434"
+    }
+}
+
+
+
             <div class="col-md-5">
-            <legend>Organization Info</legend>
+            <legend>Volunteer Info</legend>
             <!-- Organization Input -->
             <form id="organization-info" class="form-horizontal" role="form">
               <fieldset>
                 <div class="form-group">
-                    <label class="col-sm-3 control-label" for="org_company">Company / Organization</label>
+                    <label class="col-sm-3 control-label" for="volunteer_name">Volunteer Name</label>
                     <div class="col-sm-9">
-                      <input type="text" class="form-control" ng-model="org_company" id="company_org" placeholder="Company/Organization">
+                      <input type="text" class="form-control" ng-model="volunteer_name" id="volunteer_name" placeholder="john smith">
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-sm-3 control-label" for="org-description">Contact Name</label>
+                    <label class="col-sm-3 control-label" for="volunteer_email">Email <div class="details">*contact email address</div></label>
                     <div class="col-sm-9">
-                      <textarea type="text" class="form-control" ng-model="org_contact_name" id="org_contact_name" placeholder="Contact Fullname (First/Last)"></textarea>
+                      <input type="text" class="form-control" ng-model="volunteer_email" id="volunteer-email" placeholder="volunteers@email.com">
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-sm-3 control-label" for="org_phone">Phone <div class="details">phone number including country code (eg: +821-222-222-1234)</div></label>
+                    <label class="col-sm-3 control-label" for="volunteer_password">Password <div class="details">*more than 8 characters including number</div></label>
                     <div class="col-sm-9">
-                      <input type="text" class="form-control" ng-model="org_phone" id="member-phone" placeholder="phone  number">
+                      <input type="password" class="form-control" ng-model="volunteer_password" id="volunteer-password">
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-sm-3 control-label" for="org_email">Email <div class="details">*contact email address</div></label>
+                    <label class="col-sm-3 control-label" for="volunteer_phone">Phone <div class="details">phone number including country code (eg: +821-222-222-1234)</div></label>
                     <div class="col-sm-9">
-                      <input type="text" class="form-control" ng-model="org_email" id="member-email" placeholder="Org Email">
+                      <input type="text" class="form-control" ng-model="volunteer_phone" id="volunteer_phone" placeholder="408-555-1234">
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-sm-3 control-label" for="org-description">Organization Description</label>
+                    <label class="col-sm-3 control-label" for="volunteer_organization_id">Organization Id
+                    <div class="details">*organization's unique id</div></label>
                     <div class="col-sm-9">
-                      <textarea type="text" class="form-control" ng-model="org_description" id="org_description" placeholder="Add additional details here about your organization"></textarea>
+                      <input type="text" class="form-control" ng-model="volunteer_organization_id" id="volunteer_organization_id" placeholder="29239-JDSD"></input>
                     </div>
                 </div>
                
@@ -72,8 +89,8 @@
                 <!-- service -->
                 <!-- Service Seletion -->
 
-        <legend>Select Services Provided</legend>
-        <div class="row" ng-model="servicesSelected">     
+        <legend>Volunteer Options</legend>
+       <!--  <div class="row" ng-model="servicesSelected">     
           <div class="col-sm-3 col-md-12 service-item" ng-click="onServiceSelected(0)" ng-class="{selected:servicesSelected[0].selected}">
             <div class="thumbnail">
               <img src="http://placehold.it/350x35" />
@@ -139,12 +156,12 @@
             </div>
              <span ng-if="servicesSelected[3].selected" class="glyphicon glyphicon-ok" aria-hidden="true"></span>
           </div>
-        </div>
+        </div> -->
 
         <div class="row">
           <div class="col-md-12">
                 
-                <button ng-click="serviceAddOrganization()" type="button" class="btn-primary btn btn-block">Submit Organization</button>
+                <button ng-click="serviceAddOrganization()" type="button" class="btn-primary btn btn-block">Add Volunteer</button>
                 </div>
         </div>
         </div>

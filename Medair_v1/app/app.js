@@ -71,6 +71,10 @@ app.config(function ($routeProvider, $locationProvider) {
       // 	controller: 'todoCtrl'
       // })
 
+      .when('/volunteer/add', {
+          templateUrl: '/../Pages/volunteer/add.html'
+      })
+
       .otherwise({
         redirectTo: '/'
       })
