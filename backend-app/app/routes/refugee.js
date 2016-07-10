@@ -39,7 +39,6 @@ module.exports = function(app){
 			newRefugee.save(function(err, doc){
 				//If the name is not unique then
 	            if(err) return res.status(503).json(errorResponse(err, 503));
-	            console.log("Refugee saved successfully");
 	        	return res.status(200).json(doc);
 	        });
 
