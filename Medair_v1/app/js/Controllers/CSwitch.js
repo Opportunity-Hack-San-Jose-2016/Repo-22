@@ -11,13 +11,18 @@ angular.module('CSwitch', ['ngRoute', 'ngCookies'])
 
             $routeProvider
                 .when('/Help', {
-                    templateUrl: 'Help.html',
+                    templateUrl: '../../Pages/Organization_Services/Help.html',
                     controller: "DashCtrl",
                     controllerAs: 'dash'
                 })
                 .when('/pending/:name',{
-                    templateUrl:'ServicesPage.html',
+                    templateUrl:'../../Pages/Organization_Services/ServicesPage.html',
                     controller: "ReqCtrl"
+                })
+
+                .when('/Refugees',{
+                    templateUrl: '../../Pages/Organization_Services/refugee.html',
+                    controller: "refugeeCtrl as ref",
                 })
                 // .otherwise({
                 //     templateUrl: ''
@@ -204,23 +209,44 @@ angular.module('CSwitch', ['ngRoute', 'ngCookies'])
         $scope.serviceName=$routeParams.name;
         // $scope.serviceName =
     }])
-    //Directive for making alerts
-    /*
-     .directive('notification', function ($timeout) {
-     return {
-     restrict: 'E',
-     replace: true,
-     scope: {
-     ngModel: '='
-     },
-     template: '<div class="alert fade" bs-alert="ngModel"></div>',
-     link: function (scope, element, attrs) {
-     $timeout(function () {
-     element.hide();
-     }, 3000);
-     }
-     }
-     })*/
 
-    //Pulkit
+    .controller('refugeeCtrl',['$http','$scope',function($http,$scope){
+        $scope.refJson= [];
+        $scope.refNames= [];
+        $scope.searchid ="a";
+        $http({
+            method:"GET",
+            url:'../../data/sampleJson.json',
+            headers: undefined,
+            data:{}
+        }).then(function(resp){
+
+
+            angular.forEach(resp.data,function(value,index){
+                // console.log(value.refugeeName);
+                $scope.refJson.push(value);
+                $scope.refNames.push(value.refugeeName+"-"+value.RefugeeId);
+
+            });
+
+
+
+        }), function (resp) {
+            console.log("")
+        }
+
+
+        $scope.updateSelection= function (id) {
+
+            if(id.indexOf('-') > 0){
+                var values = id.split("-");
+                $scope.searchid = values[1];
+            }
+
+        }
+    }])
+
+
+
+    //Directive for making alerts
 

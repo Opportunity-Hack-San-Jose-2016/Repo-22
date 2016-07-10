@@ -1,0 +1,26 @@
+
+<div class="col-md-5">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="input-group form">
+                <input type="text" class="form-control" auto-complete ui-items="refNames" ng-change="updateSelection(selected)" ng-model="selected" placeholder="Enter Refugee name">
+	                       <span class="input-group-btn">
+	                         <button class="btn btn-primary" type="button">Search</button>
+	                       </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div ng-repeat="ref in refJson | filter:{RefugeeId : searchid} ">
+
+    <img class="img-rounded pull-xs-left" alt="img">
+    <div>
+        <label>{{ref.refugeeName}}</label>
+        <label>{{ref.refugeeId}}</label>
+        <label>{{ref.dataAdded}}</label>
+        <label>{{ref.status}}</label>
+        <label>{{ref.comments}}</label>
+    </div>
+
+</div>
