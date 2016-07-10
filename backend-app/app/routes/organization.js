@@ -122,7 +122,7 @@ module.exports = function(app){
             contactPerson:docs[i].contactPerson,
             contactNumber:docs[i].contactNumber,
             email:docs[i].email,
-            org:docs[i].id
+            orgId:docs[i].id
             };
 
           organizations.push(org);
