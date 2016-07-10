@@ -57,7 +57,10 @@
                                     </div>
                                     <div class="info">
                                         <h5>{{getType(request)}}</h5>
-                                        <span><strong>Requested:</strong> {{getDate(request)}}</span>
+                                        <span><strong>Requested: </strong>{{getDate(request)}}</span><br /><br />
+                                        <span ng-show="getDetails(request)"><strong>Details: </strong>{{getDetails(request)}}</span><br />
+                                        <br />
+                                        <span ng-show="getResponse(request)"><strong>Response: </strong>{{getResponse(request)}}</span>
                                     </div>
 
                                 </div>

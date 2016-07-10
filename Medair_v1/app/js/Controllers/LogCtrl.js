@@ -74,11 +74,10 @@ app.controller('PendingReqCtrl', ['$scope', '$http', function ($scope, $http) {
 
     $scope.requests = [ {type: 'Medical Assistance', img_url:'medicalIcon.png', date: 'June 14th, 2016'},
         {type: 'Financial Assistance', img_url:'financeIcon.png', date: 'June 14th, 2016'},
-        {type: 'Housing Repairs', img_url:'houseIcon.png', date: 'June 15th, 2016'},
-        {type: 'Water', img_url:'waterIcon.png', date: 'June 14th, 2016'}
+        {type: 'Housing Repairs', img_url:'houseIcon.png', date: 'June 15th, 2016', details:'Roof is leaking, need repairs.', response: 'MedAir repair volunteers will be arriving to your location on July 14th, 2016 to assist you.'},
+        {type: 'Water', img_url:'waterIcon.png', date: 'June 14th, 2016', details:'Need water purification system.', response: 'MedAir has been experiencing a funding shortage.  We are deeply sorry we cannot meet your request at this time.'}
     ];
     $scope.getIconUrl = function(request){
-        console.log(request.img_url);
         return request.img_url;
     }
     $scope.getDate = function(request){
@@ -86,6 +85,12 @@ app.controller('PendingReqCtrl', ['$scope', '$http', function ($scope, $http) {
     }
     $scope.getType = function(request){
         return request.type;
+    }
+    $scope.getResponse = function(request){
+        return request.response?request.response:false;
+    }
+    $scope.getDetails = function(request){
+        return request.details?request.details:false;
     }
 }]);
 
