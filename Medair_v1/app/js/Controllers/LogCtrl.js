@@ -14,7 +14,7 @@ app.config(['$httpProvider', function ($httpProvider) {
 }
 ]);
 
-app.controller('LoginController', ['$scope', '$http', '$cookies', '$location', function ($scope, $http, $cookies) {
+app.controller('LoginController', ['$scope', '$http', '$cookies', '$location', function ($scope, $http, $cookies,$location) {
     this.errMsg = "";
 
     $scope.signIn = function () {
@@ -24,11 +24,11 @@ app.controller('LoginController', ['$scope', '$http', '$cookies', '$location', f
 
         $http({
             method: "GET",
-            url: 'http://localhost:3000/api/refugee/create',
+            url: 'http://localhost:3000/api/refugee/signIn',
             headers: {'Content-Type': 'application/json'},
             data: {
-                "Username": $scope.user.userName,
-                "Password": $scope.user.passWord,
+                "id": $scope.user.userName,
+                "password": $scope.user.passWord,
             },
 
         }).then(function (resp) {
@@ -45,25 +45,25 @@ app.controller('LoginController', ['$scope', '$http', '$cookies', '$location', f
     };
 }])
 
-.factory('getLocation',['$http', function ($http) {
+// .factory('getLocation',['$http', function ($http) {
+//
+//     var location = {};
+//     if (navigator.geolocation) {
+//         navigator.geolocation.getCurrentPosition(function (position) {
+//
+//             mysrclat = position.coords.latitude;
+//             mysrclong = position.coords.longitude;
+//             location = {"lat": mysrclat, "long":mysrclong};
+//             console.log(mysrclat);
+//             console.log(mysrclong);
+//         });
+//
+//     }
+//
+//     return location;
+// }])
 
-    var location = {};
-    if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(function (position) {
-
-            mysrclat = position.coords.latitude;
-            mysrclong = position.coords.longitude;
-            location = {"lat": mysrclat, "long":mysrclong};
-            console.log(mysrclat);
-            console.log(mysrclong);
-        });
-
-    }
-
-    return location;
-}])
-
-app.controller('SignUpController', ['getLocation','$scope', '$http', function (getLocation,$scope, $http) {
+app.controller('SignUpController', ['$scope', '$cookies','$http', function ($scope, $cookies,$http) {
 
     var location = {};
     if (navigator.geolocation) {
@@ -102,6 +102,7 @@ app.controller('SignUpController', ['getLocation','$scope', '$http', function (g
             data:dataJson
         }).success(function (resp) {
             console.log(resp);
+            $cookies.put('refugeeId', resp.id);
             if (resp.Result != null) {
                 console.log("Account Creation was Successful");
             }
@@ -111,9 +112,42 @@ app.controller('SignUpController', ['getLocation','$scope', '$http', function (g
             this.errMsg = "Please check your Username and Password";
         });
     };
-}]);
+}])
 
-app.controller('PendingReqCtrl', ['$scope', '$http', function ($scope, $http) {
+.factory('restCall', function($http) {
+    // console.log("inside restcall");
+    var requests;
+    var serverReq = function () {
+        console.log("inside restcall");
+        $http({
+            method: "GET",
+            url: 'localhost:3000/api/requests',
+            headers: {'Content-Type': 'application/json'},
+        }).success(function (resp) {
+            console.log(resp);
+            requests = value;
+            if (resp.Result != null) {
+                console.log("Account Creation was Successful");
+            }
+
+            }).error(function (resp) {
+            console.log(resp);
+            this.errMsg = "Please check your Username and Password";
+        });
+
+        return requests;
+    };
+
+    return {
+        serverReq : serverReq
+    };
+})
+
+app.controller('PendingReqCtrl', ['restCall','$scope', '$http', function (restCall,$scope, $http) {
+
+    $scope.requests = restCall.serverReq();
+
+
     $scope.services = [
         { type:'Medical Assistance', img_url: 'medicalIcon.png'},
         { type:'Housing Repairs', img_url: 'houseIcon.png'},
@@ -121,11 +155,11 @@ app.controller('PendingReqCtrl', ['$scope', '$http', function ($scope, $http) {
         { type:'Financial Assistance', img_url: 'financeIcon.png'}
     ];
 
-    $scope.requests = [ {type: 'Medical Assistance', img_url:'medicalIcon.png', date: 'June 14th, 2016'},
-        {type: 'Financial Assistance', img_url:'financeIcon.png', date: 'June 14th, 2016'},
-        {type: 'Housing Repairs', img_url:'houseIcon.png', date: 'June 15th, 2016', details:'Roof is leaking, need repairs.', response: 'MedAir repair volunteers will be arriving to your location on July 14th, 2016 to assist you.'},
-        {type: 'Water', img_url:'waterIcon.png', date: 'June 14th, 2016', details:'Need water purification system.', response: 'MedAir has been experiencing a funding shortage.  We are deeply sorry we cannot meet your request at this time.'}
-    ];
+    // $scope.requests = [ {type: 'Medical Assistance', img_url:'medicalIcon.png', date: 'June 14th, 2016'},
+    //     {type: 'Financial Assistance', img_url:'financeIcon.png', date: 'June 14th, 2016'},
+    //     {type: 'Housing Repairs', img_url:'houseIcon.png', date: 'June 15th, 2016', details:'Roof is leaking, need repairs.', response: 'MedAir repair volunteers will be arriving to your location on July 14th, 2016 to assist you.'},
+    //     {type: 'Water', img_url:'waterIcon.png', date: 'June 14th, 2016', details:'Need water purification system.', response: 'MedAir has been experiencing a funding shortage.  We are deeply sorry we cannot meet your request at this time.'}
+    // ];
     $scope.getIconUrl = function(request){
         return request.img_url;
     }
@@ -143,10 +177,10 @@ app.controller('PendingReqCtrl', ['$scope', '$http', function ($scope, $http) {
     }
 }]);
 
-app.controller('ServiceReqCtrl', ['$scope', '$http', function ($scope, $http) {
+app.controller('ServiceReqCtrl', ['$scope', '$http', '$cookies', function ($scope, $http,$cookies) {
     $scope.service_names = ['Medical Assistance', 'Housing Repairs','Water', 'Financial Assistance'];
     $scope.service_imgurls = ['medicalIcon.png','houseIcon.png','waterIcon.png','financeIcon.png'];
-
+    $scope.serviceId =[];
     $scope.services = [
         { name:'Medical Assistance', img_url: 'medicalIcon.png', selected: false },
         { name:'Housing Repairs', img_url: 'houseIcon.png', selected: false },
@@ -154,13 +188,61 @@ app.controller('ServiceReqCtrl', ['$scope', '$http', function ($scope, $http) {
         { name:'Financial Assistance', img_url: 'financeIcon.png', selected: false }
     ]
 
+    var location = {};
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(function (position) {
+
+            mysrclat = position.coords.latitude;
+            mysrclong = position.coords.longitude;
+            location = {"lat": mysrclat, "long":mysrclong};
+            console.log(mysrclat);
+            console.log(mysrclong);
+        });
+
+    }
+
+
+    $scope.serviceReq = function () {
+
+        var refugeeId = $cookies.get('refugeeId');
+
+        var dataJson = {"request": {
+            "refugeeId":refugeeId,
+            "location":location,
+            "requiredService":$scope.serviceId
+            // "requestComment":$scope.comment
+        }};
+
+        console.log(dataJson);
+
+        $http({
+            method: "POST",
+            url: 'localhost:3000/api/makeRequest',
+            headers: {'Content-Type': 'application/json'},
+            data:dataJson
+        }).success(function (resp) {
+            console.log(resp);
+            alert('success');
+            if (resp.Result != null) {
+                console.log("Account Creation was Successful");
+            }
+
+        }).error(function (resp) {
+            console.log(resp);
+            this.errMsg = "Please check your Username and Password";
+        });
+    };
+
     $scope.isSelected = function(idx){
         return $scope.services[idx].selected?"active-icon":"inactive-icon";
+        $scope.serviceId.push($scope.services[idx].name);
     };
 
     $scope.selectService = function(service){
         var idx = service.$index;
         $scope.services[idx].selected=!$scope.services[idx].selected;
+
+        $scope.serviceId.push($scope.services[idx].name);
     }
 
     $scope.signUp = function () {

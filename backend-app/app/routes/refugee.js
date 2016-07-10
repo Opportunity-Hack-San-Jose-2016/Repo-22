@@ -51,13 +51,14 @@ module.exports = function(app){
 
     app.post('/api/refugee/signIn', function(req,res){
 
+    	
         if(!req.body.id){
             return res.status(400).json(errorResponse('id required!', 400));
         }
         if(!req.body.password){
             return res.status(400).json(errorResponse('password  required!', 400));
         }
-
+        
         Refugee.findOne({ id : req.body.id }, function(error, data){
 
                 if(error) return res.status(503).json(errorResponse(error, 503));;
