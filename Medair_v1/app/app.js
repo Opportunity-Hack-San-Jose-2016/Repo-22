@@ -1,4 +1,4 @@
-var app = angular.module('myApp', ['LoginApp', 'OrganizationApp', 'CSwitch', 'ngRoute', 'ngCookies']);
+var app = angular.module('myApp', ['LoginApp', 'OrganizationApp', 'VolunteerApp', 'CSwitch', 'ngRoute', 'ngCookies']);
 
 app.controller('homeCtrl',function ($scope) {
 
@@ -72,8 +72,14 @@ app.config(function ($routeProvider, $locationProvider) {
       // })
 
       .when('/volunteer/add', {
-          templateUrl: '/../Pages/volunteer/add.html'
+          templateUrl: '/../Pages/volunteer/add.html',
+          controller: "VolunteerCtrl"
       })
+      
+      .when('/volunteer/view', {
+          templateUrl: '/../Pages/volunteer/view.html',
+          controller: "VolunteerCtrl"
+      })      
 
       .otherwise({
         redirectTo: '/'

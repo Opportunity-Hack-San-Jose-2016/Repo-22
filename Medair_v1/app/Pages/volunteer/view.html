@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>View Volunteers</title>
+    <link href="../../bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../../css/navbar-fixed-top.css" rel="stylesheet"><!--Try and Remove-->
+    <link href="../../css/styles.css" rel="stylesheet">
+    <link href="../../css/organization.add.css" rel="stylesheet"><!--Remove and Check-->
+    <!--Maps-->
+    <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?"></script>
+    <script src="../../bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="../../bower_components/jquery/dist/jquery.js"></script>
+</head>
+
+<!-- <body ng-app="CSwitch" ng-cloak onload="checkLoggedIn()">
+ -->
+
+
+<style>
+
+  .details {
+    font-size: 0.8em;
+    font-weight: 400;
+    font-style: italic;
+  }
+
+</style>
+ <body>
+
+    <div class="container">
+    <div class="row">
+         <legend>Volunteers (List)</legend>
+      </div>
+
+   <!-- organizations array -->
+      <div ng-repeat="vol in volunteers" class="col-sm-3 col-md-3" ng-click="addOrganizationClicked()">
+        <div class="thumbnail">
+          <img src="http://placehold.it/350x300" />
+          <div class="caption">
+            <!-- case senitive in backend unfortunately -->
+            <h5>Volunteer: </h5>
+            <h3  class="volunteer-name">{{vol.Name}}</h3>
+            <div class="volunteer-contactNumber">Phone:{{vol.contactNumber}}</div>
+            <div class="volunteer-id">Organization Id:{{vol.id}}</div>
+           <!--  <div class="volunteer-email">email{{vol.email}}</div> -->
+            <div class="subtitle">Additional Info:</div>
+            <div class="service-item" ng-repeat="service in org.services">
+                n/a
+            </div>
+            <p>
+                 <a href="#" class="btn btn-primary btn-block" role="button">Add This Volunteer</a> 
+                
+            </p>
+          </div>
+        </div>
+      </div>
+
+    <!-- add organization -->
+    <div class="col-sm-3 col-md-3">
+        <div class="thumbnail">
+          <div class="caption">
+            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+            <h3 class="service-name">Add Volunteer</h3>
+            
+               <a href="#/volunteer/add" class="btn btn-primary" role="button">Add Volunteer</a> 
+            
+          </div>
+        </div>
+      </div>
+
+
+      
+<!--       <div class="row">
+         <legend>Admin Organizations {{data.name}}</legend>
+      </div>
+      <div class="row"> -->
+
+          <!-- organization item -->
+<!--           <div class="col-sm-3 col-md-3" ng-click="addOrganizationClicked()">
+            <div class="thumbnail">
+              <img src="http://placehold.it/350x300" />
+              <div class="caption">
+                <h3 class="service-name">Org name</h3>
+                <div class="service-info">Org details ... ilform impsum, etc.</div>
+                <div class="org-name"></div>
+                <div class="org-info"></div>
+                <div class="org-email"></div>
+                <p>
+                     <a href="#" class="btn btn-primary" role="button">I want to volunteer</a> 
+                </p>
+              </div>
+            </div>
+          </div> -->
+
+
+      <div class="row">
+         
+      </div>
+    </div>
+ </body>
+
+ </html>
