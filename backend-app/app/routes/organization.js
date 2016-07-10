@@ -32,9 +32,9 @@ module.exports = function(app){
 
             if((validator.isNull(orgName)) ||
                (validator.isNull(orgLocations)) ||
-               (validator.isNull(orgService))
+               (validator.isNull(orgService)))
             {
-                return res.status(422).json(errorResponse("Missing data for the request.", 503));
+              return res.status(422).json(errorResponse("Missing data for the request.", 503));
             }
 
             var organization = new Organization({
