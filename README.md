@@ -1,3 +1,4 @@
+![alt tag](http://i.imgur.com/HdpkPFK.png)
 Team Liberate
 ================
 About the project:
