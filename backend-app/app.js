@@ -6,7 +6,7 @@ var session = require('express-session');
 var jwt = require('jsonwebtoken');
 var expressJWT = require('express-jwt');
 
-mongoose.connect('mongodb://localhost/');
+mongoose.connect('mongodb://localhost/medair');
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
@@ -18,19 +18,20 @@ app.use(function(req, res, next) {
 });
 app.all(expressJWT({ secret: 'App Secret String'}). unless({ path: ['/users/login']}));
 
-// require('./app/routes/product')(app);
+require('./app/routes/refugee')(app);
+require('./app/routes/organization')(app);
 // require('./app/routes/user')(app);
 
-app.get('*', function(req, res, next) {
-  var err = new Error();
-  err.status = 404;
-  next(err);
-});
+// app.get('*', function(req, res, next) {
+//   var err = new Error();
+//   err.status = 404;
+//   next(err);
+// });
 
-app.post('*', function(req, res, next) {
-  var err = new Error();
-  err.status = 404;
-  next(err);
-});
+// app.post('*', function(req, res, next) {
+//   var err = new Error();
+//   err.status = 404;
+//   next(err);
+// });
 
 module.exports = app;

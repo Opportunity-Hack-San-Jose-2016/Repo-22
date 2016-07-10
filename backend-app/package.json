@@ -27,6 +27,8 @@
     "express-jwt": "^3.4.0",
     "express-session": "^1.14.0",
     "jsonwebtoken": "^7.0.1",
-    "mongoose": "^4.5.3"
+    "mongoose": "^4.5.3",
+    "node-uuid": "^1.4.7",
+    "validator": "^5.4.0"
   }
 }
