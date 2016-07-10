@@ -8,6 +8,11 @@
 	padding-top: 1em;
 }
 
+.service-name {
+	position: relative;
+	left: 0;
+}
+
 .service-item {
 	display: inline-block;
 	padding: 2px 2px;
@@ -19,6 +24,10 @@
 
 	background: #009900;
 	color: white;
+}
+
+.thumbnail img {
+
 }
 
 .glyphicon-ok {
