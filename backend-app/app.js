@@ -11,15 +11,9 @@ mongoose.connect('mongodb://localhost/medair');
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(function(req, res, next) {
-<<<<<<< HEAD
-  res.setHeader("Access-Control-Allow-Origin", "*");
-  res.setHeader("Access-Control-Allow-Methods", "POST, GET, PUT, DELETE, OPTIONS");
-  res.setHeader("Access-Control-Allow-Headers", "*");
-=======
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Methods", "POST, GET, PUT, DELETE, OPTIONS");
   res.header("Access-Control-Allow-Headers", "*");
->>>>>>> 862c72f8f2743e8f45fb2801f68fbe9ccabb9271
   next();
 });
 app.all(expressJWT({ secret: 'App Secret String'}). unless({ path: ['/users/login']}));
