@@ -16,6 +16,7 @@ app.config(['$httpProvider', function ($httpProvider) {
 
 app.controller('LoginController', ['$scope', '$http', '$cookies', '$location', function ($scope, $http, $cookies) {
     this.errMsg = "";
+
     $scope.signIn = function () {
 
         console.log($scope.user.userName);
@@ -23,8 +24,13 @@ app.controller('LoginController', ['$scope', '$http', '$cookies', '$location', f
 
         $http({
             method: "GET",
-            url: 'http://ec2-54-187-86-28.us-west-2.compute.amazonaws.com/check/' + $scope.user.userName + '/' + $scope.user.passWord,
-            headers: undefined,
+            url: 'http://localhost:3000/api/refugee/create',
+            headers: {'Content-Type': 'application/json'},
+            data: {
+                "Username": $scope.user.userName,
+                "Password": $scope.user.passWord,
+            },
+
         }).then(function (resp) {
             console.log(resp);
             if (resp.data.Result === true) {
@@ -37,29 +43,71 @@ app.controller('LoginController', ['$scope', '$http', '$cookies', '$location', f
             this.errMsg = "Please check your Username and Password";
         });
     };
-}]);
+}])
 
-app.controller('SignUpController', ['$scope', '$http', function ($scope, $http) {
+.factory('getLocation',['$http', function ($http) {
 
+    var location = {};
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(function (position) {
 
+            mysrclat = position.coords.latitude;
+            mysrclong = position.coords.longitude;
+            location = {"lat": mysrclat, "long":mysrclong};
+            console.log(mysrclat);
+            console.log(mysrclong);
+        });
+
+    }
+
+    return location;
+}])
+
+app.controller('SignUpController', ['getLocation','$scope', '$http', function (getLocation,$scope, $http) {
+
+    var location = {};
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(function (position) {
+
+            mysrclat = position.coords.latitude;
+            mysrclong = position.coords.longitude;
+            location = {"lat": mysrclat, "long":mysrclong};
+            console.log(mysrclat);
+            console.log(mysrclong);
+        });
+
+    }
+
+    console.log(location);
     $scope.signUp = function () {
+
+        var dataJson = {"refugee": {
+            "id":$scope.id,
+            "firstname":$scope.firstName,
+            "lastname":$scope.lastName,
+            "password":$scope.passWord,
+            "age":$scope.age,
+            "location":location,
+            "contactNumber":$scope.phonenumber,
+            "gender":$scope.gender,
+            "disabled":""+$scope.disabled
+        }};
+
+        console.log(dataJson);
+
         $http({
             method: "POST",
-            url: 'http://ec2-54-187-86-28.us-west-2.compute.amazonaws.com/create',
-            data: {
-                "Username": $scope.user.userName,
-                "Password": $scope.user.passWord,
-            },
-            headers: undefined
+            url: 'http://localhost:3000/api/refugee/create',
+            headers: {'Content-Type': 'application/json'},
+            data:dataJson
         }).success(function (resp) {
             console.log(resp);
-            if (resp.Result === true) {
+            if (resp.Result != null) {
                 console.log("Account Creation was Successful");
-
-
             }
 
         }).error(function (resp) {
+            console.log(resp);
             this.errMsg = "Please check your Username and Password";
         });
     };

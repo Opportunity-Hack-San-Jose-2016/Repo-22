@@ -1,136 +1,63 @@
-/**
- * Created by Pulkit on 03-05-2016.
- */
+
 angular.module('CSwitch', ['ngRoute', 'ngCookies'])
-    .config(['$routeProvider', '$locationProvider', '$httpProvider',
-        function ($routeProvider, $locationProvider, $httpProvider) {
-            $httpProvider.defaults.headers.common = {};
-            $httpProvider.defaults.headers.post = {};
-            $httpProvider.defaults.headers.put = {};
-            $httpProvider.defaults.headers.patch = {};
+    // .config(['$routeProvider', '$locationProvider', '$httpProvider',
+    //     function ($routeProvider, $locationProvider, $httpProvider) {
+    //         $httpProvider.defaults.headers.common = {};
+    //         $httpProvider.defaults.headers.post = {};
+    //         $httpProvider.defaults.headers.put = {};
+    //         $httpProvider.defaults.headers.patch = {};
+    //
+    //         $routeProvider
+    //             .when('/Help', {
+    //                 templateUrl: '../../Pages/Organization_Services/Help.html',
+    //                 controller: "DashCtrl",
+    //                 controllerAs: 'dash'
+    //             })
+    //             .when('/pending/:name',{
+    //                 templateUrl:'../../Pages/Organization_Services/ServicesPage.html',
+    //                 controller: "ReqCtrl"
+    //             })
+    //
+    //             .when('/Refugees',{
+    //                 templateUrl: '../../Pages/Organization_Services/refugee.html',
+    //                 controller: "refugeeCtrl as ref",
+    //             })
+    //             // .otherwise({
+    //             //     templateUrl: ''
+    //             // });
+    //
+    //         // $locationProvider.html5Mode(true);
+    //     }])
 
-            $routeProvider
-                .when('/Help', {
-                    templateUrl: '../../Pages/Organization_Services/Help.html',
-                    controller: "DashCtrl",
-                    controllerAs: 'dash'
-                })
-                .when('/pending/:name',{
-                    templateUrl:'../../Pages/Organization_Services/ServicesPage.html',
-                    controller: "ReqCtrl"
-                })
-
-                .when('/Refugees',{
-                    templateUrl: '../../Pages/Organization_Services/refugee.html',
-                    controller: "refugeeCtrl as ref",
-                })
-                // .otherwise({
-                //     templateUrl: ''
-                // });
-
-            // $locationProvider.html5Mode(true);
-        }])
-    .factory('restCall',['$http', function ($http) {
+    .factory('restCall', function($http) {
+        console.log("inside restcall");
         var requests;
-        requests=[{
-            "serviceId":"111123",
-            "RefugeeId":"reg11",
-            "dataAdded":"111123",
-            "status":"pending",
-            "comments":"test",
-            "reqId":"12312312312"
-        },
-            {
-                "serviceId":"222222",
-                "RefugeeId":"reg11",
-                "dataAdded":"111123",
-                "status":"pending",
-                "comments":"test",
-                "reqId":"12312312312"
-            },
-            {
-                "serviceId":"3333333",
-                "RefugeeId":"reg11",
-                "dataAdded":"111123",
-                "status":"pending",
-                "comments":"test",
-                "reqId":"12312312312"
-            },
-            {
-                "serviceId":"4444444",
-                "RefugeeId":"reg11",
-                "dataAdded":"111123",
-                "status":"pending",
-                "comments":"test",
-                "reqId":"12312312312"
-            },{
-                "serviceId":"5555555",
-                "RefugeeId":"reg11",
-                "dataAdded":"111123",
-                "status":"processing",
-                "comments":"test",
-                "reqId":"12312312312"
-            },{
-                "serviceId":"111123",
-                "RefugeeId":"reg11",
-                "dataAdded":"111123",
-                "status":"pending",
-                "comments":"test",
-                "reqId":"12312312312"
-            },{
-                "serviceId":"111123",
-                "RefugeeId":"reg11",
-                "dataAdded":"111123",
-                "status":"completed",
-                "comments":"test",
-                "reqId":"12312312312"
-            },{
-                "serviceId":"111123",
-                "RefugeeId":"reg11",
-                "dataAdded":"111123",
-                "status":"pending",
-                "comments":"test",
-                "reqId":"12312312312"
-            },{
-                "serviceId":"111123",
-                "RefugeeId":"reg11",
-                "dataAdded":"111123",
-                "status":"processing",
-                "comments":"test",
-                "reqId":"12312312312"
-            },{
-                "serviceId":"111123",
-                "RefugeeId":"reg11",
-                "dataAdded":"111123",
-                "status":"processing",
-                "comments":"test",
-                "reqId":"12312312312"
-            },{
-                "serviceId":"111123",
-                "RefugeeId":"reg11",
-                "dataAdded":"111123",
-                "status":"pending",
-                "comments":"test",
-                "reqId":"12312312312"
-            }
-            ];/*
+        var serverReq = function () {
+            console.log("inside restcall");
             $http({
-            method:"GET",
-            url:'https://www.google.com',
-            headers: undefined,
-            data:{
-                //JSON DATA to be sent Token ReqId
-            }
-        }).then(function(resp){
-            //resp.data contains all the JSON data.
-            //merge the resp.data array with a ng-model.
-            requests= resp.data;
+                method: "GET",
+                url: 'localhost:3000/api/requests',
+                headers: {'Content-Type': 'application/json'},
+            }).success(function (resp) {
+                console.log(resp);
+                requests = value;
+                if (resp.Result != null) {
 
-        }), function (resp) {
-            console.log("")
-        }*/
-        return requests;
-    }])
+                    console.log("Account Creation was Successful");
+                }
+
+            }).error(function (resp) {
+                console.log(resp);
+                this.errMsg = "Please check your Username and Password";
+            });
+
+            return requests;
+        };
+
+        return {
+            serverReq : serverReq
+        };
+})
     //for loading component
     .filter('unique', function () {
 
@@ -195,7 +122,7 @@ angular.module('CSwitch', ['ngRoute', 'ngCookies'])
         };
     }])
     .controller('DashCtrl',['restCall','$http','$scope',function(restCall,$http,$scope){
-        $scope.requests=restCall;
+        $scope.requests=restCall.serverReq();
         $scope.accept=function () {
          $scope.acptBtn ="Accepted";
         }
@@ -204,12 +131,12 @@ angular.module('CSwitch', ['ngRoute', 'ngCookies'])
 
     }])
     .controller('ReqCtrl',['$scope','$routeParams','restCall',function ($scope,$routeParams,restCall) {
-        $scope.requests=restCall;
+        $scope.requests=restCall.serverReq();
         console.log("params :"+$routeParams.name);
         $scope.serviceName=$routeParams.name;
         // $scope.serviceName =
     }])
-
+//
     .controller('refugeeCtrl',['$http','$scope',function($http,$scope){
         $scope.refJson= [];
         $scope.refNames= [];
