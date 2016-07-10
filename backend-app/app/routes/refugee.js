@@ -1,11 +1,4 @@
-/*
-Router for 'users'.
-It handles the requests for
-(1) Creating a new refugee - /api/boats - POST
-(2) Retrieving all boats - /api/boats - GET
-*/
-
-var Refugee = require('../models/refugeeModel'); //to use boats schema
+var Refugee = require('../models/refugeeModel'); 
 var validator = require('validator'); // for data validator
 var errorResponse = require('./errorResponse');
 

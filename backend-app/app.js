@@ -21,6 +21,7 @@ app.all(expressJWT({ secret: 'App Secret String'}). unless({ path: ['/users/logi
 require('./app/routes/refugee')(app);
 require('./app/routes/organization')(app);
 require('./app/routes/volunteer')(app);
+require('./app/routes/serviceRegistration')(app);
 
 // app.get('*', function(req, res, next) {
 //   var err = new Error();

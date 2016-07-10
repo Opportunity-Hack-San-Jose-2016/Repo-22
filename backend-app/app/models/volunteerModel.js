@@ -7,7 +7,7 @@ var schema = new Schema({
 	username : { type: String, required : false, unique : true },
 	password : { type: String, required : false, unique : true },
 	Name : { type : String, required : true},
-	organizationId : organizationId : {type:String},
+	organizationId : {type:String},
 	contactNumber : { type : String, required : true},
 }, { strict : false });
 
