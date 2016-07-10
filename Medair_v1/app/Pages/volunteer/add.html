@@ -1,1 +1,156 @@
-add
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Add organizations</title>
+    <link href="../../bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../../css/navbar-fixed-top.css" rel="stylesheet"><!--Try and Remove-->
+    <link href="../../css/styles.css" rel="stylesheet">
+    <link href="../../css/organization.add.css" rel="stylesheet"><!--Remove and Check-->
+    <!--Maps-->
+    <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?"></script>
+    <script src="../../bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="../../bower_components/jquery/dist/jquery.js"></script>
+
+</head>
+
+<style>
+
+  .details {
+    font-size: 0.8em;
+    font-weight: 400;
+    font-style: italic;
+  }
+
+</style>
+ <body>
+
+     <div class="container">
+
+        <div class="row">
+            
+            <div class="col-md-5">
+            <legend>Organization Info</legend>
+            <!-- Organization Input -->
+            <form id="organization-info" class="form-horizontal" role="form">
+              <fieldset>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label" for="org_company">Company / Organization</label>
+                    <div class="col-sm-9">
+                      <input type="text" class="form-control" ng-model="org_company" id="company_org" placeholder="Company/Organization">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label" for="org-description">Contact Name</label>
+                    <div class="col-sm-9">
+                      <textarea type="text" class="form-control" ng-model="org_contact_name" id="org_contact_name" placeholder="Contact Fullname (First/Last)"></textarea>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label" for="org_phone">Phone <div class="details">phone number including country code (eg: +821-222-222-1234)</div></label>
+                    <div class="col-sm-9">
+                      <input type="text" class="form-control" ng-model="org_phone" id="member-phone" placeholder="phone  number">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label" for="org_email">Email <div class="details">*contact email address</div></label>
+                    <div class="col-sm-9">
+                      <input type="text" class="form-control" ng-model="org_email" id="member-email" placeholder="Org Email">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label" for="org-description">Organization Description</label>
+                    <div class="col-sm-9">
+                      <textarea type="text" class="form-control" ng-model="org_description" id="org_description" placeholder="Add additional details here about your organization"></textarea>
+                    </div>
+                </div>
+               
+              </fieldset>
+            </form>
+            </div>
+            <div class="col-md-6" >
+                <!-- service -->
+                <!-- Service Seletion -->
+
+        <legend>Select Services Provided</legend>
+        <div class="row" ng-model="servicesSelected">     
+          <div class="col-sm-3 col-md-12 service-item" ng-click="onServiceSelected(0)" ng-class="{selected:servicesSelected[0].selected}">
+            <div class="thumbnail">
+              <img src="http://placehold.it/350x35" />
+              <div class="caption">
+              
+                <h3 class="service-name">Medical</h3>
+                <div class="service-info">Select this if your organization provides medical services, etc ...</div>
+                <div class="org-name"></div>
+                <div class="org-info"></div>
+                <div class="org-email"></div>
+                <p>
+                     <button class="btn btn-default btn-block" role="button">Add Service</button> 
+                </p>
+              </div>
+            </div>
+            <span ng-if="servicesSelected[0].selected" class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+          </div>
+          <div class="col-sm-3 col-md-12 service-item" ng-click="onServiceSelected(1)" ng-class="{selected:servicesSelected[1].selected}">
+            <div class="thumbnail">
+              <img src="http://placehold.it/350x35" />
+              <div class="caption">
+                <h3 class="service-name">Water</h3>
+                <div class="service-info">Select this if your organization provides water services ...</div>
+                <div class="org-name"></div>
+                <div class="org-info"></div>
+                <div class="org-email"></div>
+                <p>
+                     <button class="btn btn-default btn-block" role="button">Add Service</button> 
+                </p>
+              </div>
+            </div>
+             <span ng-if="servicesSelected[1].selected" class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+          </div>
+          <div class="col-sm-3 col-md-12 service-item" ng-click="onServiceSelected(2)" ng-class="{selected:servicesSelected[2].selected}">
+            <div class="thumbnail">
+              <img src="http://placehold.it/350x35" />
+              <div class="caption">
+                <h3 class="service-name">Housing</h3>
+                <div class="service-info">Select this if your organization provides housing services ...</div>
+                <div class="org-name"></div>
+                <div class="org-info"></div>
+                <div class="org-email"></div>
+                <p>
+                     <button class="btn btn-default btn-block" role="button">Add Service</button> 
+                </p>
+              </div>
+            </div>
+             <span ng-if="servicesSelected[2].selected" class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+          </div>
+           <div class="col-sm-3 col-md-12 service-item" ng-click="onServiceSelected(3)" ng-class="{selected:servicesSelected[3].selected}">
+            <div class="thumbnail">
+              <img src="http://placehold.it/350x35" />
+              <div class="caption">
+                <h3 class="service-name">Financial</h3>
+                <div class="service-info">Select this if your organization provides financial services, etc ...</div>
+                <div class="org-name"></div>
+                <div class="org-info"></div>
+                <div class="org-email"></div>
+                <p>
+                     <button class="btn btn-default btn-block" role="button">Add Service</button> 
+                </p>
+              </div>
+            </div>
+             <span ng-if="servicesSelected[3].selected" class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-12">
+                
+                <button ng-click="serviceAddOrganization()" type="button" class="btn-primary btn btn-block">Submit Organization</button>
+                </div>
+        </div>
+        </div>
+
+     </div>
+
+ </body>
+
+ </html>
