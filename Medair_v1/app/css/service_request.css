@@ -1,0 +1,18 @@
+.service-icons {
+  margin-right: 0;
+  margin-left: 0;
+  padding-right: 0px;
+  padding-left: 0px;
+  margin-bottom: 15px;
+}
+
+.active-icon {
+    -webkit-filter: contrast(170%);
+    border: 1px solid black;
+    border-radius: 5px;
+}
+
+.inactive-icon {
+    -webkit-filter: grayscale(30%); /* Chrome, Safari, Opera */
+    filter: grayscale(30%);
+}

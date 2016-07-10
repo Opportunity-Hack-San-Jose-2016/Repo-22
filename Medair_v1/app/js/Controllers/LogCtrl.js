@@ -55,7 +55,7 @@ app.controller('SignUpController', ['$scope', '$http', function ($scope, $http) 
             if (resp.Result === true) {
                 console.log("Account Creation was Successful");
 
-                
+
             }
 
         }).error(function (resp) {
@@ -67,8 +67,24 @@ app.controller('SignUpController', ['$scope', '$http', function ($scope, $http) 
 
 
 app.controller('ServiceReqCtrl', ['$scope', '$http', function ($scope, $http) {
+    $scope.service_names = ['Medical Assistance', 'Housing Repairs','Water', 'Financial Assistance'];
+    $scope.service_imgurls = ['medicalIcon.png','houseIcon.png','waterIcon.png','financeIcon.png'];
 
-    $scope.services = ['Health Care','Cash Assitence','water','Housing','Other'];
+    $scope.services = [
+        { name:'Medical Assistance', img_url: 'medicalIcon.png', selected: false },
+        { name:'Housing Repairs', img_url: 'houseIcon.png', selected: false },
+        { name:'Water', img_url: 'waterIcon.png', selected: false },
+        { name:'Financial Assistance', img_url: 'financeIcon.png', selected: false }
+    ]
+
+    $scope.isSelected = function(idx){
+        return $scope.services[idx].selected?"active-icon":"inactive-icon";
+    };
+
+    $scope.selectService = function(service){
+        var idx = service.$index;
+        $scope.services[idx].selected=!$scope.services[idx].selected;
+    }
 
     $scope.signUp = function () {
         $http({
