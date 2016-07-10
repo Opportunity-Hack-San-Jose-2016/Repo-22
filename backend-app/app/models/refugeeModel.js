@@ -3,11 +3,11 @@ var uuid = require('node-uuid');
 var Schema = mongoose.Schema;
 
 var schema = new Schema({
-	id : { type : String, required : true, unique : true},
+	id : { type : String, required : true, unique : true, },
 	firstname : { type: String, required : true, default : ""},
 	lastname : { type: String, required : true, default : ""},
 	age: {type: String, required:true, default : ""},
-	email : { type: String, required : false, unique : true, default : ""},
+	email : { type: String, required : false, default : ""},
 	password : { type : String, required : true, default : ""},
 	location : {lat:String, long: String, default : ""},
 	contactNumber : {type : String, default : ""},
