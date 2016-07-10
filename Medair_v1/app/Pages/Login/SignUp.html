@@ -14,6 +14,7 @@
     <!-- Bootstrap core CSS -->
     <link href="../../bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="../../css/styles.css" rel="stylesheet">
+    <link href="../../css/signup.css" rel="stylesheet">
 
     <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
@@ -28,7 +29,7 @@
             <div class="col-md-5">
                 <!-- Logo -->
                 <div class="logo">
-                    <h1><a href="#">Librate Refugee</a></h1>
+                    <h1><a href="#">Liberate Refugee</a></h1>
                 </div>
             </div>
 
@@ -46,15 +47,19 @@
                     <div class="login-wrapper">
                         <div class="box">
                             <form class="content-wrap" name="SignUp" ng-cloak>
-                                <h6> Sign Up Here</h6>
-                                <input type="text" id="uName" class="form-control" placeholder="UNHCR" required autofocus ng-model="user.userName">
-                                <input type="password" id="uPassword" class="form-control" placeholder="PASSWORD" required ng-model="user.passWord">
-                                <input class="form-control" type="password" id="passwordConfirm" placeholder="CONFIRM PASSWORD" required oninput="check(this)">
-                                <input type="text" id="firstName" class="form-control" placeholder="FIRST NAME" required ng-model="user.firstName">
-                                <input type="text" id="lastName" class="form-control" placeholder="LAST NAME" required ng-model="user.lastName">
-                                <input type="text" id="age" class="form-control" placeholder="AGE" required ng-model="user.age">
-                                <input type="text" id="gender" class="form-control" placeholder="GENDER" required ng-model="user.gender">
-                                <input type="checkbox" class="form-control" >Disabled
+                                <h6>MedAir Registration</h6>
+                                <input type="text" id="uName" class="form-control" placeholder="UNHCR ID" required autofocus ng-model="user.userName">
+                                <input type="text" id="firstName" class="form-control" placeholder="First Name" required ng-model="user.firstName">
+                                <input type="text" id="lastName" class="form-control" placeholder="Last Name" required ng-model="user.lastName">
+                                <input type="password" id="uPassword" class="form-control" placeholder="Password" required ng-model="user.passWord">
+                                <input class="form-control" type="password" id="passwordConfirm" placeholder="Confirm Password" required oninput="check(this)">
+                                <input type="text" id="age" class="form-control" placeholder="Age" required ng-model="user.age">
+                                <input type="text" id="gender" class="form-control" placeholder="Gender" required ng-model="user.gender">
+                                <input type="text" id="phonenumber" class="form-control" placeholder="Phone Number" required ng-model="user.phonenumber">
+                                <input type="text" id="email" class="form-control" placeholder="Email" required ng-model="user.email">
+                                <div class="checkbox">
+                                  <label><input type="checkbox" value="">Is this person disabled?</label>
+                                </div>
                                 <div class="action">
                                     <button class="btn btn-primary signup" type="submit" ng-click="signUp()">Sign Up</button>
                                 </div>
