@@ -5,11 +5,9 @@ var Schema = mongoose.Schema;
 var schema = new Schema({
 	id : { type : String, default : function(){ return uuid(); }},
 	name : { type: String, required : true, unique : true},
-	services : [{
-		serviceName : {type:String},
-	}],
+	services : [{type:String}],
 	locations : [{
-		location : {lat:String, long: String},
+		location : {lat:String, lng: String},
 	}],
 	contactPerson : { type: String, required : false, unique : true},
 	contactNumber : { type : String, required : true},
