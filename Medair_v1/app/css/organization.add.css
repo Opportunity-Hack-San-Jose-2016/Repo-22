@@ -2,3 +2,26 @@
 
 	border: 1px solid #ccc;
 }
+
+.subtitle {
+
+	padding-top: 1em;
+}
+
+.service-item {
+	display: inline-block;
+	padding: 2px 2px;
+	margin: 2px 2px;
+	border: 1px solid gray;
+}
+
+.service-item.selected {
+
+	background: #009900;
+	color: white;
+}
+
+.glyphicon-ok {
+	margin-left: 0.5em;
+	font-size: 2em;
+}

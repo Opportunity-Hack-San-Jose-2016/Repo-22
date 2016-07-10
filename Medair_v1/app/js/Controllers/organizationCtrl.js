@@ -8,8 +8,27 @@ app.controller('orgCtrl', ['$scope', '$location', '$http', function($scope, $loc
 	*/
 
 	$scope.data = {
+		
 		name: "asdf"
+
 	}
+
+	$scope.servicesSelected = [{
+		service_name: 'Water',
+		selected: false
+	},
+	{
+		service_name: 'Medical',
+		selected: false
+	},
+	{
+		service_name: 'Housing',
+		selected: false
+	},
+	{
+		service_name: 'Financial',
+		selected: false
+	}];
 
 	/**
 	*
@@ -48,6 +67,20 @@ app.controller('orgCtrl', ['$scope', '$location', '$http', function($scope, $loc
 		$location.path('/organization/add');
 	}
 
+	$scope.onServiceSelected = function(index) {
+
+		console.log("service selected: ", index);
+		console.log("debug", $scope.servicesSelected[index]);
+		console.log("debug", $scope.servicesSelected[index].selected);
+		var selection = $scope.servicesSelected[index].selected;
+
+		$scope.servicesSelected[index].selected = !(selection);
+
+		console.log("afterchage", $scope.servicesSelected[index].selected);
+		// var selection = ($scope.servicesSelected.indexOf(index)).selected = !(selected);
+		//console.log("service selection changed:", selection);
+	}
+
 	/**
 	* services
 	*/
@@ -76,14 +109,22 @@ app.controller('orgCtrl', ['$scope', '$location', '$http', function($scope, $loc
 
 		// var data = MOCK_organization_data;
 
+		//add services the organization has selected
+		var servicesSelected = [];
+		$scope.servicesSelected.forEach(function(ele){
 
+			if(ele.selected === true) {
+				servicesSelected.push(ele.service_name);
+			}
+
+		})
 
 		var data = {
 
 			"organization": {
 			    "name":$scope.org_company,
 			    "locations":[{"lat": "35.15", "lng":"34.56"}],
-			    "services":["Health", "Water"],
+			    "services":servicesSelected,
 			    "contactPerson":$scope.org_contact_name,
 			    "contactNumber":$scope.org_phone,
 			    "email":$scope.org_email

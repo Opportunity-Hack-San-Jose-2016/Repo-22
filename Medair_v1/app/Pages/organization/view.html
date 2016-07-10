@@ -29,63 +29,55 @@
  <body>
 
     <div class="container">
+    <div class="row">
+         <legend>Organization (List)</legend>
+      </div>
 
-<!-- "object:3"
-contactNumber
-:
-"1234343434"
-contactPerson
-:
-"Mitul"
-email
-:
-"mitul@gmail.com"
-locations
-:
-Array[1]
-name
-:
-"Medair"
-services
-:
-Array[2]
-0
-:
-"Health"
-1
-:
-"Water" -->
-
-   <!-- organization item -->
+   <!-- organizations array -->
       <div ng-repeat="org in organizations" class="col-sm-3 col-md-3" ng-click="addOrganizationClicked()">
         <div class="thumbnail">
-          <img src="http://placehold.it/350x350" />
+          <img src="http://placehold.it/350x300" />
           <div class="caption">
             <h3 class="service-name">{{org.name}}</h3>
-            <div class="org-contactNumber">{{org.contactNumber}}</div>
-            <div class="org-contactPerson">{{org.contactPerson}}</div>
-            <div class="org-email">{{org.email}}</div>
-            <div class="">Services:</div>
+            <div class="org-contactNumber">phone:{{org.contactNumber}}</div>
+            <div class="org-contactPerson">contact:{{org.contactPerson}}</div>
+            <div class="org-email">email{{org.email}}</div>
+            <div class="subtitle">Services:</div>
             <div class="service-item" ng-repeat="service in org.services">
                 {{service}}
             </div>
             <p>
-                 <a href="#" class="btn btn-primary" role="button">Add Service</a> 
+                 <a href="#" class="btn btn-primary btn-block" role="button">Add Volunteer</a> 
+                 <a href="#" class="btn btn-default btn-block" role="button">I want to volunteer</a> 
             </p>
           </div>
         </div>
       </div>
 
+    <!-- add organization -->
+    <div class="col-sm-3 col-md-3">
+        <div class="thumbnail">
+          <div class="caption">
+            <h3 class="service-name">Add Organization</h3>
+            <p>
+                 <a href="#" class="btn btn-primary btn-block" role="button">Add Volunteer</a> 
+                 <a href="#" class="btn btn-default btn-block" role="button">I want to volunteer</a> 
+            </p>
+          </div>
+        </div>
+      </div>
+
+
       
-      <div class="row">
+<!--       <div class="row">
          <legend>Admin Organizations {{data.name}}</legend>
       </div>
-      <div class="row">
+      <div class="row"> -->
 
           <!-- organization item -->
-          <div class="col-sm-3 col-md-3" ng-click="addOrganizationClicked()">
+<!--           <div class="col-sm-3 col-md-3" ng-click="addOrganizationClicked()">
             <div class="thumbnail">
-              <img src="http://placehold.it/350x350" />
+              <img src="http://placehold.it/350x300" />
               <div class="caption">
                 <h3 class="service-name">Org name</h3>
                 <div class="service-info">Org details ... ilform impsum, etc.</div>
@@ -93,11 +85,11 @@ Array[2]
                 <div class="org-info"></div>
                 <div class="org-email"></div>
                 <p>
-                     <a href="#" class="btn btn-primary" role="button">Add Service</a> 
+                     <a href="#" class="btn btn-primary" role="button">I want to volunteer</a> 
                 </p>
               </div>
             </div>
-          </div>
+          </div> -->
 
 
       <div class="row">
