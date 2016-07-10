@@ -26,6 +26,17 @@ app.config(function ($routeProvider, $locationProvider) {
         controller: 'SignUpController'
       })
 
+      .when('/service_req', {
+          templateUrl: 'Pages/refugee_services/service_request.html',
+          controller: 'ServiceReqCtrl'
+      })
+
+      .when('/pending_req', {
+          templateUrl: 'Pages/refugee_services/pending_requests.html',
+          controller: 'PendingReqCtrl'
+      })
+
+
       .when('/admin', {
         templateUrl: '/Pages/Organization_Services/Admin.html',
         controller: 'ReqCtrl'
