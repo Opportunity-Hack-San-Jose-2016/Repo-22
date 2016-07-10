@@ -6,63 +6,53 @@ It handles the requests for
 */
 
 var refugee = require('../models/refugeeModel'); //to use boats schema
+var Service = require('../models/serviceModel');
 var validator = require('validator'); // for data validator
 var errorResponse = require('./errorResponse');
 
 module.exports = function(app){
 
-	app.post('/api/organization/create', function(req, res){
+    app.post('/api/organizations/create', function(req, res){
 
-		//validating Parameters
+        //parse request body
+        var input = JSON.parse(req.body.refugee);
+        
+        var orgName = req.body.organization.name;
+        var orgLocations = req.body.organization.locations;
+        var orgServices = req.body.organization.serviceArr;
+        var contactPerson = req.body.organization.contactPerson;
+        var contactNumber = req.body.organization.contactNumber;
+        var email = req.body.organization.email;
 
-		var input = JSON.parse(req.body.refugee);
+        //Validate if request body is not malfunctioned json
+        if(validator.isNull(input)) 
+        {
+            //store in the database
+            console.log("Database store has been called");
 
-		if(input.isValid()) {
-			//store in the database
-			console.log("Database store has been called");
+            if((validator.isNull(orgName)) ||
+               (validator.isNull(orgLocations)) ||
+               (validator.isNull(orgService))
+            {
+                return res.status(422).json(errorResponse("Missing data for the request.", 503));
+            }
 
-			if((req.body.organization.name == null) ||
-			   (req.body.organization.locations == null) ||
-			   (req.body.organization.serviceArr == null)) {
-				res.status(200).json({status:"Missing data for the request."});
-			}
+            var organization = new Organization({
+              name : orgName,
+              services : orgServices,
+              locations : orgLocations,
+              email: email,
+              contactPerson : contactPerson,
+              contactNumber : contactNumber,
+            });
 
-			var locationArr = req.body.organization.locations;
-			var servicesArr = req.body.organization.serviceArr;
-
-			var organization = new Organization({
-				name : req.body.organization.name,
-				services : servicesArr,
-				locations : locationArr,
-				contactPerson : req.body.organization.contactPerson,
-				contactNumber : req.body.organization.contactNumber,
-			});
-
-			res.status(200).json({status:"true"});
-		} else {
-			res.status(200).json({error:"error parsing data"});
-		}
-
-/*		if((req.body.boat.name == null) || (req.body.boat.capacity == null)){
-			//standard response code is 422 but right now I am using 400 as of now.
-			return res.status(400).json(errorResponse("Make sure all required parameters are included in the request...!", 400));
-		} else {
-
-			var newBoat = new boat({
-			name : req.body.boat.name,
-			capacity : req.body.boat.capacity,
-			availCapacity : req.body.boat.capacity
-			});
-
-			//saving a boat
-			newBoat.save(function(err){
-
-				//If the name is not unique then
-	            if(err) return res.status(503).json(errorResponse(err.errmsg, 503));
-	            console.log("Boat "+ newBoat.name +" saved successfully");
-	            return res.status(200).json({id:newBoat.id, capacity: newBoat.capacity, name: newBoat.name});
-	        });
-		}*/
-	});
+            organization.save(function(err, doc) {
+              if(err) return res.status(500).json(errorResponse(err, 500));
+              res.status(201).json({status:"true"});
+            });
+        } else {
+          return res.status(422).json(errorResponse("error parsing data", 422));
+        }
+    });
 
 }

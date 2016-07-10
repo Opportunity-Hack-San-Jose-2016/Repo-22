@@ -34,7 +34,7 @@ module.exports = function(app){
             });
 
         } else {
-            return res.status(422).json(errorResponse("error parsing data", 503));
+            return res.status(422).json(errorResponse("error parsing data", 422));
         }
     });
 
