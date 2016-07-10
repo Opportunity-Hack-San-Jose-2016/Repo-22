@@ -3,7 +3,6 @@ app.controller('orgCtrl', ['$scope', '$location', '$http', function($scope, $loc
 
 	console.log("orgCtrl Loaded");
 
-
 	/**
 	* initializations
 	*/
@@ -19,6 +18,15 @@ app.controller('orgCtrl', ['$scope', '$location', '$http', function($scope, $loc
 	$scope.init = function(){
 
 		console.log("orgCtrl init");
+
+		serviceOrganizationGetAll(function(err, response){
+
+			console.log("got reponse: ", response);
+
+			$scope.organizations = response;
+
+
+		})
 	}
 
 	/**
@@ -41,8 +49,9 @@ app.controller('orgCtrl', ['$scope', '$location', '$http', function($scope, $loc
 	}
 
 	/**
-	* private
+	* services
 	*/
+
 
 	$scope.serviceAddOrganization = function() {
 
@@ -116,6 +125,50 @@ app.controller('orgCtrl', ['$scope', '$location', '$http', function($scope, $loc
 		});
 
 	}
+
+	function serviceOrganizationGetAll(callback) {
+
+		console.log("serviceAddOrganization");
+
+		var url_host = "http://localhost:3000";
+		var url_path = "/api/organizations/getAll";
+
+		var requestOptions = {
+
+		   'method': "GET",
+           'url': url_host + url_path,
+           'headers': {
+           		'Content-Type': 'application/json'
+           }
+
+		}
+
+		// $http.post(url_host + url_path, data, config).then(function(){
+
+		// 	console.log("Success");
+
+		// }, function() {
+
+		// 	console.log("Failure");
+
+		// });
+
+		$http(requestOptions).success(function(response) {
+
+			console.log(response);
+			callback(null, response);
+
+		}).error(function(error) {
+
+			console.log(error.errMsg);
+			callback(response, null);
+
+		});
+
+	}
+
+    $scope.init();
+
 
 
 }]);

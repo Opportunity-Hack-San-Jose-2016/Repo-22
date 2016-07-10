@@ -29,6 +29,53 @@
  <body>
 
     <div class="container">
+
+<!-- "object:3"
+contactNumber
+:
+"1234343434"
+contactPerson
+:
+"Mitul"
+email
+:
+"mitul@gmail.com"
+locations
+:
+Array[1]
+name
+:
+"Medair"
+services
+:
+Array[2]
+0
+:
+"Health"
+1
+:
+"Water" -->
+
+   <!-- organization item -->
+      <div ng-repeat="org in organizations" class="col-sm-3 col-md-3" ng-click="addOrganizationClicked()">
+        <div class="thumbnail">
+          <img src="http://placehold.it/350x350" />
+          <div class="caption">
+            <h3 class="service-name">{{org.name}}</h3>
+            <div class="org-contactNumber">{{org.contactNumber}}</div>
+            <div class="org-contactPerson">{{org.contactPerson}}</div>
+            <div class="org-email">{{org.email}}</div>
+            <div class="">Services:</div>
+            <div class="service-item" ng-repeat="service in org.services">
+                {{service}}
+            </div>
+            <p>
+                 <a href="#" class="btn btn-primary" role="button">Add Service</a> 
+            </p>
+          </div>
+        </div>
+      </div>
+
       
       <div class="row">
          <legend>Admin Organizations {{data.name}}</legend>
@@ -52,40 +99,6 @@
             </div>
           </div>
 
-          <!-- organization item -->
-          <div class="col-sm-3 col-md-3">
-            <div class="thumbnail">
-              <img src="http://placehold.it/350x350" />
-              <div class="caption">
-                <h3 class="service-name">Org name</h3>
-                <div class="service-info">Org details ... ilform impsum, etc.</div>
-                <div class="org-name"></div>
-                <div class="org-info"></div>
-                <div class="org-email"></div>
-                <p>
-                     <a href="#" class="btn btn-primary" role="button">Add Service</a> 
-                </p>
-              </div>
-            </div>
-          </div>
-
-          <!-- organization item -->
-          <div class="col-sm-3 col-md-3">
-            <div class="thumbnail">
-              <img src="http://placehold.it/350x350" />
-              <div class="caption">
-                <h3 class="service-name">Org Name</h3>
-                <div class="service-info">Org details ... ilform impsum, etc.</div>
-                <div class="org-name"></div>
-                <div class="org-info"></div>
-                <div class="org-email"></div>
-                <p>
-                     <a href="#" class="btn btn-primary" role="button">Add Service</a> 
-                </p>
-              </div>
-            </div>
-          </div>
-      </div>
 
       <div class="row">
          <div class="col-md-12">
