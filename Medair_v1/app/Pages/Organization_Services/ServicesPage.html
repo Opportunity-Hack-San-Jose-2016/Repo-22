@@ -11,15 +11,16 @@
         <th>Action</th>
     </tr>
     <!--  <tr ng-if="lists.typecode === 1" ng-repeat = "lists in list">  -->
-    <tr ng-repeat="req in filtered=(requests|filter:{serviceId:serviceName}|filter:{status:'pending'})"> <!-- Make a filter which filters by status and by category -->
+    <tr ng-repeat="req in filtered=(requests|filter:{serviceId:serviceName}|filter:{status:statusType})"> <!-- Make a filter which filters by status and by category -->
         <td>{{req.serviceId}}</td>
         <td>{{req.status}}</td>
         <td>{{req.RefugeeId}}</td>
         <td>{{req.dataAdded}}</td>
         <td>{{req.comments}}</td>
         <td>{{req.reqId}}</td>
-        <td><a class="btn btn-success" ng-click="accept()" >Accept</a>
-            <a class="btn btn-warning" ng-click="reject()" role="button">Reject</a></td>
+        <td><a class="btn btn-success" ng-click=onApprove(req) >Submit</a>
+
     </tr>
 </table>
+Hello{{statusType}}
 </br>

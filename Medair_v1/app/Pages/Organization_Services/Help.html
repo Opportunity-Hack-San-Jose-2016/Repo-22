@@ -4,15 +4,18 @@
     <div class="col-lg-4 ng-scope panel panel-default" style="padding-left: 100px">
         <img class="img-circle" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw=="
              alt="Generic placeholder image" width="140" height="140">
-        <h2>{{req.serviceId}}<div ng-repeat="req2 in filtered=( requests| filter:{serviceId: req.serviceId})" ></div ><span class="badge badge-notify">{{filtered.length}}</span></h2>
+        <h2>{{req.serviceId}}
+            <div ng-repeat="req2 in filtered=( requests| filter:{serviceId: req.serviceId}|filter:{status: statusType})"></div>
+            </h2>
+        <span class="badge badge-notify">{{filtered.length}}</span>
         <p><a class="btn btn-default" href="#pending/{{req.serviceId}}" role="button">View details »</a></p>
     </div>
 </div>
 <style>
-.badge-notify{
-background:#ae1534;
-position:relative;
-top: -80px;
-    left: 90px;
-}
+    .badge-notify {
+        background: #ae1534;
+        position: relative;
+        top: -80px;
+        left: 90px;
+    }
 </style>

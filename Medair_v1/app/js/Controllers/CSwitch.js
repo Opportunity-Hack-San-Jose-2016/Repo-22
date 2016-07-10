@@ -1,63 +1,132 @@
-
+/**
+ * Created by Pulkit on 03-05-2016.
+ */
 angular.module('CSwitch', ['ngRoute', 'ngCookies'])
-    // .config(['$routeProvider', '$locationProvider', '$httpProvider',
-    //     function ($routeProvider, $locationProvider, $httpProvider) {
-    //         $httpProvider.defaults.headers.common = {};
-    //         $httpProvider.defaults.headers.post = {};
-    //         $httpProvider.defaults.headers.put = {};
-    //         $httpProvider.defaults.headers.patch = {};
-    //
-    //         $routeProvider
-    //             .when('/Help', {
-    //                 templateUrl: '../../Pages/Organization_Services/Help.html',
-    //                 controller: "DashCtrl",
-    //                 controllerAs: 'dash'
-    //             })
-    //             .when('/pending/:name',{
-    //                 templateUrl:'../../Pages/Organization_Services/ServicesPage.html',
-    //                 controller: "ReqCtrl"
-    //             })
-    //
-    //             .when('/Refugees',{
-    //                 templateUrl: '../../Pages/Organization_Services/refugee.html',
-    //                 controller: "refugeeCtrl as ref",
-    //             })
-    //             // .otherwise({
-    //             //     templateUrl: ''
-    //             // });
-    //
-    //         // $locationProvider.html5Mode(true);
-    //     }])
+    .config(['$routeProvider', '$locationProvider', '$httpProvider',
+        function ($routeProvider, $locationProvider, $httpProvider) {
+            $httpProvider.defaults.headers.common = {};
+            $httpProvider.defaults.headers.post = {};
+            $httpProvider.defaults.headers.put = {};
+            $httpProvider.defaults.headers.patch = {};
 
-    .factory('restCall', function($http) {
-        console.log("inside restcall");
+            $routeProvider
+                .when('/Help/:name', {
+                    templateUrl: 'Help.html',
+                    controller: "DashCtrl",
+                    controllerAs: 'dash'
+                })
+                .when('/pending/:name',{
+                    templateUrl:'ServicesPage.html',
+                    controller: "ReqCtrl"
+                })
+            
+                // .otherwise({
+                //     templateUrl: ''
+                // });
+
+            // $locationProvider.html5Mode(true);
+        }])
+    .factory('restCall',['$http', function ($http) {
         var requests;
-        var serverReq = function () {
-            console.log("inside restcall");
+        requests=[{
+            "serviceId":"111123",
+            "RefugeeId":"reg11",
+            "dataAdded":"111123",
+            "status":"pending",
+            "comments":"test",
+            "reqId":"12312312312"
+        },
+            {
+                "serviceId":"222222",
+                "RefugeeId":"reg11",
+                "dataAdded":"111123",
+                "status":"pending",
+                "comments":"test",
+                "reqId":"12312312312"
+            },
+            {
+                "serviceId":"3333333",
+                "RefugeeId":"reg11",
+                "dataAdded":"111123",
+                "status":"pending",
+                "comments":"test",
+                "reqId":"12312312312"
+            },
+            {
+                "serviceId":"4444444",
+                "RefugeeId":"reg11",
+                "dataAdded":"111123",
+                "status":"pending",
+                "comments":"test",
+                "reqId":"12312312312"
+            },{
+                "serviceId":"5555555",
+                "RefugeeId":"reg11",
+                "dataAdded":"111123",
+                "status":"processing",
+                "comments":"test",
+                "reqId":"12312312312"
+            },{
+                "serviceId":"111123",
+                "RefugeeId":"reg11",
+                "dataAdded":"111123",
+                "status":"pending",
+                "comments":"test",
+                "reqId":"12312312312"
+            },{
+                "serviceId":"111123",
+                "RefugeeId":"reg11",
+                "dataAdded":"111123",
+                "status":"completed",
+                "comments":"test",
+                "reqId":"12312312312"
+            },{
+                "serviceId":"111123",
+                "RefugeeId":"reg11",
+                "dataAdded":"111123",
+                "status":"pending",
+                "comments":"test",
+                "reqId":"12312312312"
+            },{
+                "serviceId":"111123",
+                "RefugeeId":"reg11",
+                "dataAdded":"111123",
+                "status":"processing",
+                "comments":"test",
+                "reqId":"12312312312"
+            },{
+                "serviceId":"111123",
+                "RefugeeId":"reg11",
+                "dataAdded":"111123",
+                "status":"processing",
+                "comments":"test",
+                "reqId":"12312312312"
+            },{
+                "serviceId":"111123",
+                "RefugeeId":"reg11",
+                "dataAdded":"111123",
+                "status":"pending",
+                "comments":"test",
+                "reqId":"12312312312"
+            }
+            ];/*
             $http({
-                method: "GET",
-                url: 'localhost:3000/api/requests',
-                headers: {'Content-Type': 'application/json'},
-            }).success(function (resp) {
-                console.log(resp);
-                requests = value;
-                if (resp.Result != null) {
+            method:"GET",
+            url:'https://www.google.com',
+            headers: undefined,
+            data:{
+                //JSON DATA to be sent Token ReqId
+            }
+        }).then(function(resp){
+            //resp.data contains all the JSON data.
+            //merge the resp.data array with a ng-model.
+            requests= resp.data;
 
-                    console.log("Account Creation was Successful");
-                }
-
-            }).error(function (resp) {
-                console.log(resp);
-                this.errMsg = "Please check your Username and Password";
-            });
-
-            return requests;
-        };
-
-        return {
-            serverReq : serverReq
-        };
-})
+        }), function (resp) {
+            console.log("")
+        }*/
+        return requests;
+    }])
     //for loading component
     .filter('unique', function () {
 
@@ -121,59 +190,47 @@ angular.module('CSwitch', ['ngRoute', 'ngCookies'])
             }
         };
     }])
-    .controller('DashCtrl',['restCall','$http','$scope',function(restCall,$http,$scope){
-        $scope.requests=restCall.serverReq();
-        $scope.accept=function () {
-         $scope.acptBtn ="Accepted";
-        }
-            
+    .controller('DashCtrl',['restCall','$routeParams','$http','$scope','$rootScope',function(restCall,$routeParams,$http,$scope,$rootScope){
+        $scope.requests=restCall;
+        console.log("params :"+$routeParams.name);
+        $rootScope.statusType=$routeParams.name;
             
 
     }])
     .controller('ReqCtrl',['$scope','$routeParams','restCall',function ($scope,$routeParams,restCall) {
-        $scope.requests=restCall.serverReq();
+        $scope.requests=restCall;
         console.log("params :"+$routeParams.name);
         $scope.serviceName=$routeParams.name;
-        // $scope.serviceName =
-    }])
-//
-    .controller('refugeeCtrl',['$http','$scope',function($http,$scope){
-        $scope.refJson= [];
-        $scope.refNames= [];
-        $scope.searchid ="a";
-        $http({
-            method:"GET",
-            url:'../../data/sampleJson.json',
-            headers: undefined,
-            data:{}
-        }).then(function(resp){
-
-
-            angular.forEach(resp.data,function(value,index){
-                // console.log(value.refugeeName);
-                $scope.refJson.push(value);
-                $scope.refNames.push(value.refugeeName+"-"+value.RefugeeId);
-
-            });
-
-
-
-        }), function (resp) {
-            console.log("")
-        }
-
-
-        $scope.updateSelection= function (id) {
-
-            if(id.indexOf('-') > 0){
-                var values = id.split("-");
-                $scope.searchid = values[1];
+        $scope.onApprove=function (req) {
+            console.log(req.status);
+            if (req.status==="pending") {
+            req.status="processing";
+            }
+            else {
+                req.status="completed";
             }
 
         }
+
+        // $scope.serviceName =
     }])
-
-
-
     //Directive for making alerts
+    /*
+     .directive('notification', function ($timeout) {
+     return {
+     restrict: 'E',
+     replace: true,
+     scope: {
+     ngModel: '='
+     },
+     template: '<div class="alert fade" bs-alert="ngModel"></div>',
+     link: function (scope, element, attrs) {
+     $timeout(function () {
+     element.hide();
+     }, 3000);
+     }
+     }
+     })*/
+
+    //Pulkit
 
