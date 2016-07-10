@@ -12,12 +12,9 @@
     <title>Cloud Sensor SignUp</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="../bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="../css/styles.css" rel="stylesheet">
+    <link href="../../bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../../css/styles.css" rel="stylesheet">
 
-
-    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-    <!--[if lt IE 9]>
     <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
@@ -38,11 +35,7 @@
             <div class="col-md-7" id="logCheck">
                 <div class="navbar navbar-inverse" role="banner">
                     <nav class="collapse navbar-collapse bs-navbar-collapse navbar-right" role="navigation">
-                        <ul class="nav navbar-nav">
-                            <!--<li><a href="Login.html">Login</a>-->
-                            <!--</li>-->
-                            <!--<li class="active"><a href="#">SignUp<span class="sr-only">(current)</span></a></li>-->
-                        </ul>
+
                     </nav>
                 </div>
             </div>
@@ -54,9 +47,14 @@
                         <div class="box">
                             <form class="content-wrap" name="SignUp" ng-cloak>
                                 <h6> Sign Up Here</h6>
-                                <input type="text" id="uName" class="form-control" placeholder="Your UserName?" required autofocus ng-model="user.uName">
-                                <input type="password" id="uPassword" class="form-control" placeholder="Password" required ng-model="user.pass">
-                                <input class="form-control" type="password" id="passwordConfirm" placeholder="Confirm Password" required oninput="check(this)">
+                                <input type="text" id="uName" class="form-control" placeholder="UNHCR" required autofocus ng-model="user.userName">
+                                <input type="password" id="uPassword" class="form-control" placeholder="PASSWORD" required ng-model="user.passWord">
+                                <input class="form-control" type="password" id="passwordConfirm" placeholder="CONFIRM PASSWORD" required oninput="check(this)">
+                                <input type="text" id="firstName" class="form-control" placeholder="FIRST NAME" required ng-model="user.firstName">
+                                <input type="text" id="lastName" class="form-control" placeholder="LAST NAME" required ng-model="user.lastName">
+                                <input type="text" id="age" class="form-control" placeholder="AGE" required ng-model="user.age">
+                                <input type="text" id="gender" class="form-control" placeholder="GENDER" required ng-model="user.gender">
+                                <input type="checkbox" class="form-control" >Disabled
                                 <div class="action">
                                     <button class="btn btn-primary signup" type="submit" ng-click="signUp()">Sign Up</button>
                                 </div>
@@ -83,9 +81,9 @@
                 }
             }
         </script>
-        <script src="../bower_components/angular/angular.min.js"></script>
-        <script src="../bower_components/angular-route/angular-route.min.js"></script>
-        <script src="../js/Controllers/LogCtrl.js"></script>
+        <script src="../../bower_components/angular/angular.min.js"></script>
+        <script src="../../bower_components/angular-route/angular-route.min.js"></script>
+        <script src="../../js/Controllers/LogCtrl.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.5/angular-cookies.js"></script>
 
 

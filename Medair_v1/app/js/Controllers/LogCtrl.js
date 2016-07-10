@@ -17,22 +17,20 @@ app.config(['$httpProvider', function ($httpProvider) {
 app.controller('LoginController', ['$scope', '$http', '$cookies', '$location', function ($scope, $http, $cookies) {
     this.errMsg = "";
     $scope.signIn = function () {
+
+        console.log($scope.user.userName);
+        console.log($scope.user.passWord);
+
         $http({
             method: "GET",
-            url: 'http://ec2-54-187-86-28.us-west-2.compute.amazonaws.com/check/' + $scope.user.uName + '/' + $scope.user.pass,
+            url: 'http://ec2-54-187-86-28.us-west-2.compute.amazonaws.com/check/' + $scope.user.userName + '/' + $scope.user.passWord,
             headers: undefined,
         }).then(function (resp) {
             console.log(resp);
             if (resp.data.Result === true) {
                 this.errMsg = "Successfully Logged In";
-                $cookies.put('loggedIn', true);
-                $cookies.put('uName', $scope.user.uName);
-                $cookies.put('uPass', $scope.user.pass);
-                $cookies.put('isAdmin',$scope.isAdmin);
-                if ($scope.isAdmin == true)
-                    window.location.assign('Admin.html');
-                else
-                    window.location.assign('User.html');
+
+
             }
 
         },function (resp) {
@@ -48,8 +46,37 @@ app.controller('SignUpController', ['$scope', '$http', function ($scope, $http) 
             method: "POST",
             url: 'http://ec2-54-187-86-28.us-west-2.compute.amazonaws.com/create',
             data: {
-                "Username": $scope.user.uName,
-                "Password": $scope.user.pass,
+                "Username": $scope.user.userName,
+                "Password": $scope.user.passWord,
+            },
+            headers: undefined
+        }).success(function (resp) {
+            console.log(resp);
+            if (resp.Result === true) {
+                console.log("Account Creation was Successful");
+
+                
+            }
+
+        }).error(function (resp) {
+            this.errMsg = "Please check your Username and Password";
+        });
+    };
+}]);
+
+
+
+app.controller('ServiceReqCtrl', ['$scope', '$http', function ($scope, $http) {
+
+    $scope.services = ['Health Care','Cash Assitence','water','Housing','Other'];
+
+    $scope.signUp = function () {
+        $http({
+            method: "POST",
+            url: 'http://ec2-54-187-86-28.us-west-2.compute.amazonaws.com/create',
+            data: {
+                "Username": $scope.user.userName,
+                "Password": $scope.user.passWord,
             },
             headers: undefined
         }).success(function (resp) {

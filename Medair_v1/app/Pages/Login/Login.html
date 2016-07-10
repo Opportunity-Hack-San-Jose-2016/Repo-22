@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="Pulkit">
+    <title>Cloud Sensor Login</title>
+    <!-- Bootstrap core CSS -->
+    <link href="../../bower_components/bootstrap/dist/css/bootstrap.css" rel="stylesheet">
+    <link href="../../css/styles.css" rel="stylesheet">
+
+
+</head>
+
+<body ng-app="LoginApp" ng-cloak class="login-bg">
+<div class="header" ng-controller="LoginController as LoginCtrl">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-5">
+                <!-- Logo -->
+                <div class="logo">
+                    <h1><a href="#">Librate Refugee</a></h1>
+                </div>
+            </div>
+
+            <div class="col-md-7" id="logCheck">
+                <div class="navbar navbar-inverse" role="banner">
+                    <nav class="collapse navbar-collapse bs-navbar-collapse navbar-right" role="navigation">
+                        <ul class="nav navbar-nav">
+                            <!--<li class="active"><a href="Login.html">Login</a>-->
+                            <!--</li>-->
+                            <!--<li><a href="SignUp.html">SignUp<span class="sr-only">(current)</span></a></li>-->
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="page-content container">
+        <div class="row">
+            <div class="col-md-4 col-md-offset-4">
+                <div class="login-wrapper">
+                    <div class="box">
+                        <form role="form">
+                        <div class="content-wrap" ng-cloak="true">
+                            <h2 class="form-signin-heading">Welcome Back!</h2>
+                            <h6>Sign In</h6>
+
+                            <div class="form-group">
+                                <label for="email">Email:</label>
+                                <input type="email" class="form-control" id="email" placeholder="UNHCR ID" required autofocus ng-model="user.userName">
+                            </div>
+                            <div class="form-group">
+                                <label for="pwd">Password:</label>
+                                <input type="password" class="form-control" id="pwd" placeholder="Enter password" ng-model="user.passWord">
+                            </div>
+
+                            <!--<input type="text" id="uName" class="form-control" placeholder="UNHCR ID" required autofocus-->
+                                   <!--ng-model="user.userName">-->
+                            <!--<input type="password" id="uPassword" class="form-control" placeholder="Password" required-->
+                                   <!--ng-model="user.passWord">-->
+
+                            <button class="btn btn-lg btn-primary signup" type="submit" ng-click="signIn()">Sign in
+                            </button>
+                            <p class="forgot"><a href="#">Forgot Password?</a></p>
+                            {{LoginCtrl.errMsg}}
+
+                        </div>
+                        </form>
+                    </div>
+
+                    <div class="already">
+                        <p>Don't have an account yet?</p>
+                        <a href="SignUp.html">Sign Up</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<script src="../../bower_components/angular/angular.min.js"></script>
+<script src="../../bower_components/angular-route/angular-route.min.js"></script>
+
+<script src="../../js/Controllers/LogCtrl.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.5/angular-cookies.js"></script>
+
+</body>
+</html>
