@@ -9,56 +9,7 @@ angular.module('CSwitch', ['ngRoute', 'ngAnimate', 'ngCookies'])
             $httpProvider.defaults.headers.put = {};
             $httpProvider.defaults.headers.patch = {};
 
-            $routeProvider
-                .when('/Dashboard', {
-                    templateUrl: 'Dashboard.html',
-                    controller: "DashCtrl",
-                    // controllerAs: 'dash'
-                })
-                .when('/AdminDashboard', {
-                    templateUrl: 'AdminDash.html',
-                    controller: "AdminCtrl"
-
-                })
-                .when('/Profile', {
-                    templateUrl: 'profile.html',
-                    controller: "ProfileCtrl",
-                    //controllerAs: 'prof'
-                })
-                .when('/SensorManagement', {
-                    templateUrl: 'Sensor Management.html',
-                    controller: 'SensorCtrl'
-
-                }).when('/SensorManager', {
-                    templateUrl: 'Sensor Manager.html',
-                    controller: 'SensorCtrl2'
-
-                })
-                .when('/Reports', {
-                    templateUrl: 'Reports.html',
-                    controller: 'ReportCtrl'
-
-                })
-                .when('/Maps', {
-                    templateUrl: 'Maps.html',
-                    controller: 'MapCtrl'
-
-                })
-                .when('/Billing', {
-                    templateUrl: 'Billing.html',
-                    controller: 'BillingCtrl'
-
-                })
-                .when('/Subscription', {
-                    templateUrl: 'Subscriptions.html',
-                    controller: 'SubscriptionsCtrl'
-                })
-                .otherwise({
-                    templateUrl: 'Dashboard.html'
-                });
-
-            // $locationProvider.html5Mode(true);
-        }])
+        
     //for loading component
 
     .directive('ifLoading', ['$http', function ($http) {
