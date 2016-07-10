@@ -3,18 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <title>Environmental Cloud Sensor</title>
-    <link href="../BootStrap/css/bootstrap.min.css" rel="stylesheet">
-    <link href="../css/navbar-fixed-top.css" rel="stylesheet"><!--Try and Remove-->
-    <link href="../css/dashboard.css" rel="stylesheet"><!--Remove and Check-->
-    <link href="../css/styles.css" rel="stylesheet">
+    <link href="../../bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../../css/navbar-fixed-top.css" rel="stylesheet"><!--Try and Remove-->
+    <link href="../../css/dashboard.css" rel="stylesheet"><!--Remove and Check-->
+    <link href="../../css/styles.css" rel="stylesheet">
     <!--Maps-->
     <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?"></script>
-    <script src="../bower_components/jquery/dist/jquery.min.js"></script>
-    <script src="../bower_components/jquery/dist/jquery.js"></script>
+    <script src="../../bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="../../bower_components/jquery/dist/jquery.js"></script>
 
 </head>
 
-<body ng-app="CSwitch" ng-cloak onload="checkLoggedIn()">
+<body ng-app="CSwitch" ng-cloak >
 
 <!--
 Look for good themes online and implement them here.
@@ -40,7 +40,7 @@ Show no. of users and some nakli server reallocation depicting scalability multi
                     </div>
                 </div>
             </div>
-            <div class="col-md-2" id="logCheck" hidden>
+            <div class="col-md-2" id="logCheck" >
                 <div class="navbar navbar-inverse" role="banner">
                     <nav class="collapse navbar-collapse bs-navbar-collapse navbar-right" role="navigation">
                         <ul class="nav navbar-nav">
@@ -59,24 +59,20 @@ Show no. of users and some nakli server reallocation depicting scalability multi
 
             <div class="page-content">
                 <div class="row">
-                    <div class="col-md-2" id="logCheck2" hidden>
+                    <div class="col-md-2" id="logCheck2" >
                         <div class="sidebar content-box" style="display: block;">
                             <ul class="nav">
                                 <!-- Main menu -->
-                                <li class="current"><a href="#AdminDashboard"><i
+                                <li class="current"><a href="#Help"><i
                                         class="glyphicon glyphicon-dashboard "></i>
-                                    Dashboard</a></li>
-                                <li class="current"><a href="#Dashboard"><i class="glyphicon glyphicon-stats "></i>
-                                    Monitor</a></li>
+                                    Pending Requests</a></li>
+                                <li><a href="#Dashboard"><i class="glyphicon glyphicon-stats "></i>
+                                    Processing Requests</a></li>
 
-                                <!--<li><a href="#Reports"><i class="glyphicon glyphicon-stats"></i> Reports
-                                </a></li>-->
-                                <li><a href="#SensorManagement"><i class="glyphicon glyphicon-record "></i> Sensor
-                                    Management</a></li>
+                                <li><a href="#SensorManagement"><i class="glyphicon glyphicon-record "></i>Completed Requests</a></li>
                                 <li><a href="#Maps"><i class="glyphicon glyphicon-map-marker"></i> Location</a>
                                 </li>
-                                <!--<li><a href="#Billing"><i class="glyphicon glyphicon-credit-card"></i> Billing</a></li>-->
-                            </ul>
+                               </ul>
 
 
                         </div>
@@ -92,18 +88,13 @@ Show no. of users and some nakli server reallocation depicting scalability multi
     </div>
 </div>
 
-<script src="../bower_components/angular/angular.js"></script>
-<script src="../bower_components/angular-route/angular-route.js"></script>
-<script src="../bower_components/angular-cookies/angular-cookies.js"></script>
-<script src="../bower_components/angular-animate/angular-animate.js"></script>
-<script src="../js/Controllers/CSwitch.js"></script>
-<script src="../js/Logout.js"></script>
-<script src="../bower_components/ui-bootstrap-custom-build/ui-bootstrap-custom-tpls-1.3.2.js"></script>
-<script src="../bower_components/ui-bootstrap-custom-build/ui-bootstrap-custom-tpls-1.3.2.min.js"></script>
-<script src="../bower_components/ui-bootstrap-custom-build/ui-bootstrap-custom-1.3.2.js"></script>
-<script src="../bower_components/ui-bootstrap-custom-build/ui-bootstrap-custom-1.3.2.min.js"></script>
+<script src="../../bower_components/angular/angular.js"></script>
+<script src="../../bower_components/angular-route/angular-route.js"></script>
+<script src="../../bower_components/angular-cookies/angular-cookies.js"></script>
+<script src="../../js/Controllers/CSwitch.js"></script>
+<script src="../../js/Logout.js"></script>
 
-
+<!--
 <script type="text/javascript">
     angular.element(document.getElementsByTagName('head')).append(angular.element('<base href="' + window.location.pathname + '" />'));
 
@@ -146,12 +137,15 @@ Show no. of users and some nakli server reallocation depicting scalability multi
         });
     });
 </script>
-<!--For HighCharts-->
-<script src="https://code.highcharts.com/highcharts.js"></script><!--Localize-->
+-->
 
-<script src="../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
-<!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>-->
-<script src="http://code.highcharts.com/highcharts-3d.js"></script><!--Localize-->
+<!--&lt;!&ndash;For HighCharts&ndash;&gt;-->
+<!--<script src="https://code.highcharts.com/highcharts.js"></script>&lt;!&ndash;Localize&ndash;&gt;-->
+
+<!--<script src="../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>-->
+<!--&lt;!&ndash;<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>&ndash;&gt;-->
+<!--<script src="http://code.highcharts.com/highcharts-3d.js"></script>&lt;!&ndash;Localize&ndash;&gt;-->
+
 <style>
     #overlay {
         position: fixed;
