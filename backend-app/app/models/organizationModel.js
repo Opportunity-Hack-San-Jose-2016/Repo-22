@@ -4,6 +4,7 @@ var Schema = mongoose.Schema;
 
 var schema = new Schema({
 	id : { type : String, default : function(){ return uuid(); }},
+	name : { type: String, required : true},
 	services : [{
 		serviceId : {type:String},
 	}],
