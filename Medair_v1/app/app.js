@@ -1,15 +1,9 @@
-app = angular.module('myApp', ['ngRoute']);
+var app = angular.module('myApp', ['LoginApp', 'ngRoute', 'ngCookies']);
 
 app.controller('homeCtrl',function ($scope) {
 
 
 });
-
-// app.controller('todoCtrl', function($scope) {
-
-// 	console.log("todoCTRL init");
-
-// });
 
 app.config(function ($routeProvider, $locationProvider) {
 
@@ -20,6 +14,21 @@ app.config(function ($routeProvider, $locationProvider) {
       .when('/', {
         templateUrl: 'Pages/home/index.html',
         controller: 'homeCtrl'
+      })
+
+      .when('/login', {
+        templateUrl: 'pages/login/login.html',
+        controller: 'LoginController'
+      })
+
+      .when('/signup', {
+        templateUrl: 'pages/login/signup.html',
+        controller: 'SignUpController'
+      })
+
+      .when('/organization', {
+        templateUrl: '/Pages/organization/Admin.html',
+        controller: 'CSwitch'
       })
 
       .when('/organization/add', {

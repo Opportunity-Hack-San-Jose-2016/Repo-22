@@ -38,6 +38,7 @@ app.controller('LoginController', ['$scope', '$http', '$cookies', '$location', f
         });
     };
 }]);
+
 app.controller('SignUpController', ['$scope', '$http', function ($scope, $http) {
 
 
