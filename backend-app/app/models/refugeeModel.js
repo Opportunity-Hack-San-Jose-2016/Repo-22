@@ -4,18 +4,18 @@ var Schema = mongoose.Schema;
 
 var schema = new Schema({
 	id : { type : String, required : true, unique : true},
-	firstname : { type: String, required : true},
-	lastname : { type: String, required : true},
-	age: {type: String, required:true},
-	email : { type: String, required : false, unique : true},
-	password : { type : String, required : true},
-	location : {lat:String, long: String},
-	contactNumber : {type : String},
-	dateAdded: {type: Date, default: new Date()},
+	firstname : { type: String, required : true, default : ""},
+	lastname : { type: String, required : true, default : ""},
+	age: {type: String, required:true, default : ""},
+	email : { type: String, required : false, unique : true, default : ""},
+	password : { type : String, required : true, default : ""},
+	location : {lat:String, long: String, default : ""},
+	contactNumber : {type : String, default : ""},
+	dateAdded: {type: Date, default: new Date(), default : ""},
 	// familyId : {type: String},
 	// dateOfBirth : {type : Date},
-	gender : {type: String},
-	disabled: {type:Boolean},
+	gender : {type: String, default : ""},
+	disabled: {type:Boolean, default : ""},
 	role : { type : String, required : true, default: "refugee"},
 
 }, { strict : false});

@@ -21,7 +21,6 @@ module.exports = function(app){
         if(body) {
 
             var newVolunteer = new Volunteer({
-                id : body.id,
                 username : body.username,
                 Name : body.name,
                 organizationId : body.organizationId,
@@ -39,4 +38,43 @@ module.exports = function(app){
     });
 
 
+/*
+    URL:http://localhost:3000/api/volunteer/getAll
+    Type: GET
+    Response:
+        [
+          {
+            "id": "e6c09899-4cd6-4495-a4d1-e28a3f5f2284",
+            "username": "",
+            "password": "",
+            "Name": "Vishv Brahmbhatt",
+            "organizationId": "org1234",
+            "contactNumber": "1234343434"
+          }
+        ]   
+
+*/
+
+    app.get("/api/volunteer/getAll/", function(req, res) {
+
+        Volunteer.find({}, function(err, volunteers) {
+
+            var volunteerArr = [];
+
+            for (var i = 0; i < volunteers.length; i++) {
+              var volunteer = {
+                id : volunteers[i].id,
+                username : volunteers[i].username,
+                password : volunteers[i].password,
+                Name : volunteers[i].Name,
+                organizationId : volunteers[i].organizationId,
+                contactNumber : volunteers[i].contactNumber,
+                };
+
+              volunteerArr.push(volunteer);
+            }
+        return res.status(200).json(volunteerArr);
+                
+        });
+    });
 }

@@ -224,7 +224,7 @@ module.exports = function(app){
 
 		Request.findOne({id : req.body.completeRequest.reqId}, function(err, doc){
 				doc.dateFinished = new Date();
-				doc.status = "finished";
+				doc.status = "completed";
 				doc.save();
 				return res.status(200).json({status:"success"});
 		});

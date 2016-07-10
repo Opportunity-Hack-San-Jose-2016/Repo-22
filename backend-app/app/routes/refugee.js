@@ -68,4 +68,57 @@ module.exports = function(app){
 		}*/
 	});
 
+
+
+/*
+	URL:http://localhost:3000/api/refugee/getAll
+	Type: GET
+	Response:
+
+			[
+			  {
+			    "id": "un1235",
+			    "firstName": "Vishv",
+			    "lastname": "Brahmbhatt",
+			    "age": "23",
+			    "email": "",
+			    "password": "somepass",
+			    "location": {},
+			    "contactNumber": "",
+			    "dateAdded": null,
+			    "gender": "male",
+			    "disabled": false,
+			    "role": "refugee"
+			  }, ...
+			]
+
+*/
+
+	app.get('/api/refugee/getAll', function(req, res){
+      Refugee.find({}, function(err, refugees) {
+
+        var RefugeeArr = [];
+
+        for (var i = 0; i < refugees.length; i++) {
+          var refugee = {
+            id : refugees[i].id,
+            firstName : refugees[i].firstname,
+            lastname : refugees[i].lastname,
+            age : refugees[i].age,
+            email : refugees[i].email,
+            password : refugees[i].password,
+            location : refugees[i].location,
+            contactNumber : refugees[i].contactNumber,
+            dateAdded : refugees[i].dateAdded,
+            gender : refugees[i].gender,
+            disabled : refugees[i].disabled,
+            role : refugees[i].role
+            };
+
+          RefugeeArr.push(refugee);
+        }
+        return res.status(200).json(RefugeeArr);       
+      });
+    });
+
 }
