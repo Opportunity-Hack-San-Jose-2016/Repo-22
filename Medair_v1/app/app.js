@@ -15,9 +15,10 @@ angular.module('mainMod',[])
       .when('/', {
         templateUrl: 'templates/index.html',
         controller: 'mainPageCtrl'
-      }
+      })
+
       .otherwise({
         redirectTo: '/'
       });
 
-});
+})
