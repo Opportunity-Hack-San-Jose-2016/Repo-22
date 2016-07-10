@@ -1,16 +1,18 @@
-Rent Application
+Team Liberate
 ================
+About the project:
+------------------
+A web app which aims to conenct the refugees with humanitarian organisations.
 
-About
------
+Technology Stack:
+-----------------
+Our technology stack comprises of MEAN (MongoDB, Express, AngularJs, Nodejs).
 
-This repo is about backend architecture for rentz android application.
-The tech stack of backend includes:
+Requirements:
+--------------
+Install MongoDB, Redis and Nodejs and NPM.
 
-- MySQl
-- Nodejs
-- Express
-
------
-
-Inorder to run the application you need to install MySQL, Nodejs in your machine.
+How to run the project:
+1) Install dependencies using 'npm install'
+2) Run server using 'node server.js'
+3) Run 'npm start' to start the frontend webapp.
