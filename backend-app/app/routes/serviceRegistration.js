@@ -29,7 +29,6 @@ module.exports = function(app){
 				}
 */
 
-
 	app.post('/api/service/create', function(req, res){
 
 		console.log("calling service create.");
@@ -47,8 +46,8 @@ module.exports = function(app){
 
 			var newService = new Service({
 				serviceName : req.body.service.serviceName,
-				serviceDesc : req.body.service.serviceDesc,
-				img : req.body.service.img,
+				serviceDesc :  (req.body.service.serviceDesc == null) ? "" : req.body.service.serviceDesc,
+				img : (req.body.service.img == null) ? "" : req.body.service.img,
 			});
 
 			newService.save(function(err, doc){
