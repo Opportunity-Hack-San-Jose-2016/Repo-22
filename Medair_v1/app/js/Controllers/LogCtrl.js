@@ -23,7 +23,7 @@ app.controller('LoginController', ['$scope', '$http', '$cookies', '$location', f
         console.log($scope.user.passWord);
 
         $http({
-            method: "GET",
+            method: "POST",
             url: 'http://localhost:3000/api/refugee/signIn',
             headers: {'Content-Type': 'application/json'},
             data: {
