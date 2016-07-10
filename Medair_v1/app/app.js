@@ -1,24 +1,44 @@
-angular.module('mainMod',[])
+app = angular.module('myApp', ['ngRoute']);
 
-.controller('myCtrl',function ($scope) {
-
-})
+app.controller('homeCtrl',function ($scope) {
 
 
+});
 
-.config(function ($routeProvider,$locationProvider) {
+// app.controller('todoCtrl', function($scope) {
 
-  $locationProvider.html5Mode(true);
+// 	console.log("todoCTRL init");
+
+// });
+
+app.config(function ($routeProvider, $locationProvider) {
+
+  $locationProvider.html5Mode(false);
 
   $routeProvider
 
       .when('/', {
-        templateUrl: 'templates/index.html',
-        controller: 'mainPageCtrl'
+        templateUrl: 'Pages/home/index.html',
+        controller: 'homeCtrl'
       })
+
+      .when('/organization/add', {
+      	templateUrl: '/Pages/organization/add.html',
+      	controller: 'orgCtrl'
+      })
+
+      .when('/organization/view', {
+      	templateUrl: '/Pages/organization/view.html',
+      	controller: 'orgCtrl'
+      })
+
+      // .when('/admin', {
+      // 	templateUrl: 'Pages/organization/Admin.html'
+      // 	controller: 'todoCtrl'
+      // })
 
       .otherwise({
         redirectTo: '/'
-      });
+      })
 
 })
