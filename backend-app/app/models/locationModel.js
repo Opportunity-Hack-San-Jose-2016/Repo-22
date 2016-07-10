@@ -3,6 +3,7 @@ var uuid = require('node-uuid');
 var Schema = mongoose.Schema;
 
 var schema = new Schema({
+
 	id : { type : String, default : function(){ return uuid(); }},
 	long : { type: String, required : true},
 	lat : { type: String, required : false, unique : true},

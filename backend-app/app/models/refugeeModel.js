@@ -13,6 +13,7 @@ var schema = new Schema({
 	dateOfBirth : {type : Date},
 	gender : {type: String},
 	disabled: {type:Boolean},
+	role : { type : String, required : true, default: "refugee"},
 
 }, { strict : false});
 

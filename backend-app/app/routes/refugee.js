@@ -45,12 +45,12 @@ module.exports = function(app){
 				disabled: req.body.isDisabled,
 			});
 
-			newRefugee.save(function(err){
-
+			newRefugee.save(function(err, doc){
+			
 				//If the name is not unique then
 	            if(err) return res.status(503).json(errorResponse(err.errmsg, 503));
-	            console.log("Boat saved successfully");
-	        	res.status(200).json({status:"true"});    
+	            console.log("Refugee saved successfully");
+	        	res.status(200).json(doc);
 	        });
 
 			
