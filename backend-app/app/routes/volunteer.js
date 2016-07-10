@@ -29,7 +29,7 @@ module.exports = function(app){
             });
             console.log("Now creating a record");
             newVolunteer.save(function(err, doc) {
-                if(err) return err;
+                if(err) return res.status(422).json(errorResponse(err, 422));
                 return res.status(201).json(doc);
             });
 

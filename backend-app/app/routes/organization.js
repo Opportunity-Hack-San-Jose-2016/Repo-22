@@ -1,5 +1,5 @@
 /*
-Router for 'users'.
+Router for 'volunteer'.
 It handles the requests for
 (1) Creating a new refugee - /api/boats - POST
 (2) Retrieving all boats - /api/boats - GET
@@ -19,7 +19,7 @@ module.exports = function(app){
         
         var orgName = req.body.organization.name;
         var orgLocations = req.body.organization.locations;
-        var orgServices = req.body.organization.serviceArr;
+        var orgServices = req.body.organization.services;
         var contactPerson = req.body.organization.contactPerson;
         var contactNumber = req.body.organization.contactNumber;
         var email = req.body.organization.email;
@@ -52,6 +52,27 @@ module.exports = function(app){
         } else {
           return res.status(422).json(errorResponse("error parsing data", 422));
         }
+    });
+
+    app.get('/api/organizations/getAll', function(req, res){
+      Organization.find({}, function(err, docs) {
+
+        var organizations = [];
+
+        for (var i = 0; i < docs.length; i++) {
+          var org = {
+            name : docs[i].name,
+            locations : docs[i].locations,
+            services : docs[i].services,
+            contactPerson:docs[i].contactPerson,
+            contactNumber:docs[i].contactNumber,
+            email:docs[i].email
+            };
+
+          organizations.push(org);
+        }
+        return res.status(200).json(organizations);       
+      });
     });
 
 }

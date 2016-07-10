@@ -15,33 +15,28 @@ module.exports = function(app){
 			//store in the database
 			console.log("Database store has been called");
 
-/*			if((req.body.refugee.id == null) ||
-			   (req.body.refugee.name == null) ||
-			   (req.body.refugee.password == null) ||
-			   (req.body.familyId == null) ||
-			   (req.body.dob == null) ||
-			   (req.body.gender == null) ||
-			   (req.body.isDisabled == null)) {
-				res.status(200).json({status:"Missing data for the request."});
-			}*/
+			//Validation of Input is not done
 
+			//Creating new Refugee object
 			var newRefugee = new Refugee({
 				id : req.body.refugee.id,
-				name : req.body.refugee.name,
-				email : req.body.refugee.email,
+				firstname : req.body.refugee.firstname,
+				lastname : req.body.refugee.lastname,
+				age: req.body.refugee.age,
+				// email : req.body.refugee.email,
 				password : req.body.refugee.password,
-				locationid : req.body.locationid,
-				phoneNume : req.body.phoneNume,
-				familyId : req.body.familyId,
-				dateOfBirth : req.body.dob,
-				gender : req.body.gender,
-				disabled: req.body.isDisabled,
+				location : req.body.location,
+				contactNumber : req.body.contactNumber,
+				// familyId : req.body.familyId,
+				// dateOfBirth : req.body.dob,
+				age: req.body.refugee.age,
+				gender : req.body.refugee.gender,
+				disabled: req.body.refugee.isDisabled,
 			});
 
 			newRefugee.save(function(err, doc){
-			
 				//If the name is not unique then
-	            if(err) return res.status(503).json(errorResponse(err.errmsg, 503));
+	            if(err) return res.status(503).json(errorResponse(err, 503));
 	            console.log("Refugee saved successfully");
 	        	res.status(200).json(doc);
 	        });
