@@ -14,6 +14,7 @@
     <!-- Bootstrap core CSS -->
     <link href="../../bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="../../css/styles.css" rel="stylesheet">
+    <link href="../../css/service_request.css" rel="stylesheet">
 
     <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
@@ -50,13 +51,9 @@
 
                                 <div class="form-group">
                                     <label for="reqType">Request type:</label>
-                                    <div ng-repeat="serv in services">
-                                        <img src="https://cdn0.iconfinder.com/data/icons/orderdrinks/128/C_WaterGlss-128.png" />
-                                        {{serv}}
+                                    <div ng-repeat="imgurl in service_imgurls track by $index">
+                                        <img class="img-responsive service-icons col-xs-3" ng-class="isSelected($index)" src="../../images/{{imgurl}}" ng-click="selectService(this)" />
                                     </div>
-                                    <select class="form-control selectpicker" name="channels" id="reqType" ng-model="reqSelect" ng-options="serv as serv for serv in services">
-                                        <option value="">Select any request</option>
-                                    </select>
                                 </div>
 
                                 <div class="form-group" ng-show="reqSelect =='Other' ">
@@ -79,36 +76,7 @@
                                 {{reqCtrl.errMsg}}
                             </form>
 
-                            <!--<div class="modal fade in" id="gridsetup" style="" aria-hidden="false">-->
 
-                                <div class="modal-body">
-
-                                    <button type="button" class="close" style="position: absolute;right: 15px;top: 10px;">×</button>
-
-                                    <a class="approve_grid grid">
-                                        <figure class="gridset apporvegrid">
-                                            <label>Approve / Disapprove<br>Challenge</label>
-                                        </figure>
-                                    </a><a class="peers_grid grid">
-                                    <figure class="gridset invitegrid">
-                                        <label>Invite Peers</label>
-                                    </figure>
-                                </a>
-                                    <a class="challenges_grid grid">
-                                        <figure class="gridset challengegrid">
-                                            <label>Create Challenge</label>
-                                        </figure>
-                                    </a>
-
-                                    <a class="univ_grid grid">
-                                        <figure class="gridset updateunivgrid">
-                                            <label>Update University Landing Page</label>
-                                        </figure>
-                                    </a>
-
-                                </div>
-
-                            <!--</div>-->
 
                         </div>
 
