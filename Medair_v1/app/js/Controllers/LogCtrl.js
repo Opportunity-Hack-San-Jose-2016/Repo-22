@@ -64,7 +64,30 @@ app.controller('SignUpController', ['$scope', '$http', function ($scope, $http) 
     };
 }]);
 
+app.controller('PendingReqCtrl', ['$scope', '$http', function ($scope, $http) {
+    $scope.services = [
+        { type:'Medical Assistance', img_url: 'medicalIcon.png'},
+        { type:'Housing Repairs', img_url: 'houseIcon.png'},
+        { type:'Water', img_url: 'waterIcon.png'},
+        { type:'Financial Assistance', img_url: 'financeIcon.png'}
+    ];
 
+    $scope.requests = [ {type: 'Medical Assistance', img_url:'medicalIcon.png', date: 'June 14th, 2016'},
+        {type: 'Financial Assistance', img_url:'financeIcon.png', date: 'June 14th, 2016'},
+        {type: 'Housing Repairs', img_url:'houseIcon.png', date: 'June 15th, 2016'},
+        {type: 'Water', img_url:'waterIcon.png', date: 'June 14th, 2016'}
+    ];
+    $scope.getIconUrl = function(request){
+        console.log(request.img_url);
+        return request.img_url;
+    }
+    $scope.getDate = function(request){
+        return request.date;
+    }
+    $scope.getType = function(request){
+        return request.type;
+    }
+}]);
 
 app.controller('ServiceReqCtrl', ['$scope', '$http', function ($scope, $http) {
     $scope.service_names = ['Medical Assistance', 'Housing Repairs','Water', 'Financial Assistance'];
