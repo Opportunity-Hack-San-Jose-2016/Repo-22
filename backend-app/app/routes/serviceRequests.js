@@ -78,7 +78,7 @@ module.exports = function(app){
 			//If the name is not unique then
             if(err) return res.status(400).json(errorResponse(err.errmsg, 400));
             console.log("request saved successfully");
-        	res.status(200).json(doc);
+        	return res.status(200).json(doc);
         });
 
         //res.status(200).json();
