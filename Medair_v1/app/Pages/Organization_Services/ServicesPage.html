@@ -1,0 +1,25 @@
+
+<h2>{{serviceName}}</h2>
+<table class="table table-hover panel">
+    <tr>
+        <th>RequestID</th>
+        <th>Status</th>
+        <th>UNHCRId</th>
+        <th>DateAdded</th>
+        <th>Comments</th>
+        <th>ServiceID</th>
+        <th>Action</th>
+    </tr>
+    <!--  <tr ng-if="lists.typecode === 1" ng-repeat = "lists in list">  -->
+    <tr ng-repeat="req in filtered=(requests|filter:{serviceId:serviceName}|filter:{status:'pending'})"> <!-- Make a filter which filters by status and by category -->
+        <td>{{req.serviceId}}</td>
+        <td>{{req.status}}</td>
+        <td>{{req.RefugeeId}}</td>
+        <td>{{req.dataAdded}}</td>
+        <td>{{req.comments}}</td>
+        <td>{{req.reqId}}</td>
+        <td><a class="btn btn-success" ng-click="accept()" >Accept</a>
+            <a class="btn btn-warning" ng-click="reject()" role="button">Reject</a></td>
+    </tr>
+</table>
+</br>
