@@ -1,4 +1,4 @@
-var app = angular.module('myApp', ['LoginApp','CSwitch', 'ngRoute', 'ngCookies']);
+var app = angular.module('myApp', ['LoginApp', 'OrganizationApp', 'CSwitch', 'ngRoute', 'ngCookies']);
 
 app.controller('homeCtrl',function ($scope) {
 
