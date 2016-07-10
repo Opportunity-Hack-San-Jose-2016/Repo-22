@@ -7,11 +7,13 @@ app.controller('orgCtrl', ['$scope', '$location', '$http', function($scope, $loc
 	* initializations
 	*/
 
+	//test / remove this
 	$scope.data = {
 		
 		name: "asdf"
 
 	}
+
 
 	$scope.servicesSelected = [{
 		service_name: 'Water',
@@ -30,6 +32,12 @@ app.controller('orgCtrl', ['$scope', '$location', '$http', function($scope, $loc
 		selected: false
 	}];
 
+	$scope.imageBrandNames = [
+		'brandImage1.jpg',
+		'brandImage2,jpg',
+		'brandImage3,jpg'
+	];
+
 	/**
 	*
 	*/
@@ -37,10 +45,17 @@ app.controller('orgCtrl', ['$scope', '$location', '$http', function($scope, $loc
 	$scope.init = function(){
 
 		console.log("orgCtrl init");
+		
 
 		serviceOrganizationGetAll(function(err, response){
 
 			console.log("got reponse: ", response);
+
+			response.map(function(org){
+				//quick hack to add images
+				org.image = "/images/orgBrand" + (Math.floor(Math.random()*7+1) + '.jpg');
+				return org;
+			});
 
 			$scope.organizations = response;
 
@@ -166,6 +181,7 @@ app.controller('orgCtrl', ['$scope', '$location', '$http', function($scope, $loc
 		});
 
 	}
+
 
 	function serviceOrganizationGetAll(callback) {
 
