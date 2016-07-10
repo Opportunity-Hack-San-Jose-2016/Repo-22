@@ -16,7 +16,7 @@
 </head>
 
 <body ng-app="LoginApp" ng-cloak class="login-bg">
-<div class="header">
+<div class="header" ng-controller="LoginController as user">
     <div class="container">
         <div class="row">
             <div class="col-md-5">
@@ -45,22 +45,18 @@
                     <div class="box">
                         <form role="form">
                         <div class="content-wrap" ng-cloak="true">
-                            <h2 class="form-signin-heading">Welcome Back!</h2>
+                            <!--<h2 class="form-signin-heading">Welcome Back!</h2>-->
                             <h6>Sign In</h6>
 
                             <div class="form-group">
                                 <label for="email">Email:</label>
-                                <input type="email" class="form-control" id="email" placeholder="UNHCR ID" required autofocus ng-model="user.userName">
+                                <input type="text" class="form-control" id="email" placeholder="UNHCR ID" required autofocus ng-model="user.userName">
                             </div>
                             <div class="form-group">
                                 <label for="pwd">Password:</label>
                                 <input type="password" class="form-control" id="pwd" placeholder="Enter password" ng-model="user.passWord">
                             </div>
 
-                            <!--<input type="text" id="uName" class="form-control" placeholder="UNHCR ID" required autofocus-->
-                                   <!--ng-model="user.userName">-->
-                            <!--<input type="password" id="uPassword" class="form-control" placeholder="Password" required-->
-                                   <!--ng-model="user.passWord">-->
 
                             <button class="btn btn-lg btn-primary signup" type="submit" ng-click="signIn()">Sign in
                             </button>

@@ -1,4 +1,4 @@
-var app = angular.module('myApp', ['LoginApp', 'ngRoute', 'ngCookies']);
+var app = angular.module('myApp', ['LoginApp','CSwitch', 'ngRoute', 'ngCookies']);
 
 app.controller('homeCtrl',function ($scope) {
 
@@ -12,8 +12,8 @@ app.config(function ($routeProvider, $locationProvider) {
   $routeProvider
 
       .when('/', {
-        templateUrl: 'Pages/home/index.html',
-        controller: 'homeCtrl'
+          templateUrl: 'pages/login/login.html',
+          controller: 'LoginController'
       })
 
       .when('/login', {
@@ -26,9 +26,9 @@ app.config(function ($routeProvider, $locationProvider) {
         controller: 'SignUpController'
       })
 
-      .when('/organization', {
-        templateUrl: '/Pages/organization/Admin.html',
-        controller: 'CSwitch'
+      .when('/admin', {
+        templateUrl: '/Pages/Organization_Services/Admin.html',
+        controller: 'ReqCtrl'
       })
 
       .when('/organization/add', {
@@ -41,6 +41,20 @@ app.config(function ($routeProvider, $locationProvider) {
       	controller: 'orgCtrl'
       })
 
+      .when('/Help', {
+          templateUrl: '../../Pages/Organization_Services/Help.html',
+          controller: "DashCtrl",
+          controllerAs: 'dash'
+      })
+      .when('/pending/:name',{
+          templateUrl:'../../Pages/Organization_Services/ServicesPage.html',
+          controller: "ReqCtrl"
+      })
+
+      .when('/Refugees',{
+          templateUrl: '../../Pages/Organization_Services/refugee.html',
+          controller: "refugeeCtrl as ref",
+      })
       // .when('/admin', {
       // 	templateUrl: 'Pages/organization/Admin.html'
       // 	controller: 'todoCtrl'

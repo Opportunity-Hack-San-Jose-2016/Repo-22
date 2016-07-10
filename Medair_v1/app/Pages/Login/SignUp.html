@@ -23,7 +23,7 @@
 
 <body ng-app="LoginApp" class="login-bg">
 
-<div class="header" ng-controller="SignUpController as SignCtrl">
+<div class="header" ng-controller="SignUpController as user">
     <div class="container">
         <div class="row">
             <div class="col-md-5">
@@ -48,17 +48,17 @@
                         <div class="box">
                             <form class="content-wrap" name="SignUp" ng-cloak>
                                 <h6>MedAir Registration</h6>
-                                <input type="text" id="uName" class="form-control" placeholder="UNHCR ID" required autofocus ng-model="user.userName">
-                                <input type="text" id="firstName" class="form-control" placeholder="First Name" required ng-model="user.firstName">
-                                <input type="text" id="lastName" class="form-control" placeholder="Last Name" required ng-model="user.lastName">
-                                <input type="password" id="uPassword" class="form-control" placeholder="Password" required ng-model="user.passWord">
-                                <input class="form-control" type="password" id="passwordConfirm" placeholder="Confirm Password" required oninput="check(this)">
-                                <input type="text" id="age" class="form-control" placeholder="Age" required ng-model="user.age">
-                                <input type="text" id="gender" class="form-control" placeholder="Gender" required ng-model="user.gender">
-                                <input type="text" id="phonenumber" class="form-control" placeholder="Phone Number" required ng-model="user.phonenumber">
-                                <input type="text" id="email" class="form-control" placeholder="Email" required ng-model="user.email">
+                                <input type="text" id="uName" class="form-control" placeholder="UNHCR ID" required autofocus ng-model="id">
+                                <input type="text" id="firstName" class="form-control" placeholder="First Name" required ng-model="firstName">
+                                <input type="text" id="lastName" class="form-control" placeholder="Last Name" required ng-model="lastName">
+                                <input type="password" id="uPassword" class="form-control" placeholder="Password" required ng-model="passWord">
+                                <!--<input class="form-control" type="password" id="passwordConfirm" placeholder="Confirm Password" required oninput="check(this)">-->
+                                <input type="text" id="age" class="form-control" placeholder="Age" required ng-model="age">
+                                <input type="text" id="gender" class="form-control" placeholder="Gender" required ng-model="gender">
+                                <input type="text" id="phonenumber" class="form-control" placeholder="Phone Number" required ng-model="phonenumber">
+                                <input type="text" id="email" class="form-control" placeholder="Email" required ng-model="email">
                                 <div class="checkbox">
-                                  <label><input type="checkbox" value="">Is this person disabled?</label>
+                                  <label><input type="checkbox" value="" ng-model="disabled">Is this person disabled?</label>
                                 </div>
                                 <div class="action">
                                     <button class="btn btn-primary signup" type="submit" ng-click="signUp()">Sign Up</button>

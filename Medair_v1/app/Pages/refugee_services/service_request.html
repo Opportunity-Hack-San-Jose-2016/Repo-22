@@ -50,7 +50,7 @@
                                 <h6> Make Request</h6>
 
                                 <div class="form-group">
-                                    <label for="reqType">Request type:</label>
+                                    <label>Request type:</label>
                                     <div ng-repeat="imgurl in service_imgurls track by $index">
                                         <img class="img-responsive service-icons col-xs-3" ng-class="isSelected($index)" src="../../images/{{imgurl}}" ng-click="selectService(this)" />
                                     </div>
