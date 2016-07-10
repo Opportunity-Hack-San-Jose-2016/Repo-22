@@ -4,7 +4,7 @@ var Schema = mongoose.Schema;
 
 var schema = new Schema({
 	id : { type : String, default : function(){ return uuid(); }},
-	username : { type: String, required : false, unique : true , default : ""},
+	email : { type: String, required : false, unique : true , default : ""},
 	password : { type: String, required : false, unique : false , default : ""},
 	Name : { type : String, required : true, default : ""},
 	organizationId : {type:String, default : ""},

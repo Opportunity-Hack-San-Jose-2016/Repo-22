@@ -1,6 +1,8 @@
 var Refugee = require('../models/refugeeModel'); 
 var validator = require('validator'); // for data validator
 var errorResponse = require('./errorResponse');
+var redisClient = require('../routes/redisConn');
+var jwt = require('jsonwebtoken');
 
 module.exports = function(app){
 
@@ -38,38 +40,69 @@ module.exports = function(app){
 				//If the name is not unique then
 	            if(err) return res.status(503).json(errorResponse(err, 503));
 	            console.log("Refugee saved successfully");
-	        	res.status(200).json(doc);
+	        	return res.status(200).json(doc);
 	        });
 
 			
 		} else {
-			res.status(200).json({error:"error parsing data"});
+			return res.status(200).json({error:"error parsing data"});
 		}
-
-/*		if((req.body.boat.name == null) || (req.body.boat.capacity == null)){
-			//standard response code is 422 but right now I am using 400 as of now.
-			return res.status(400).json(errorResponse("Make sure all required parameters are included in the request...!", 400));
-		} else {
-
-			var newBoat = new boat({
-			name : req.body.boat.name,
-			capacity : req.body.boat.capacity,
-			availCapacity : req.body.boat.capacity
-			});
-
-			//saving a boat
-			newBoat.save(function(err){
-
-				//If the name is not unique then
-	            if(err) return res.status(503).json(errorResponse(err.errmsg, 503));
-	            console.log("Boat "+ newBoat.name +" saved successfully");
-	            return res.status(200).json({id:newBoat.id, capacity: newBoat.capacity, name: newBoat.name});
-	        });
-		}*/
 	});
 
 
+    app.post('/api/refugee/signIn', function(req,res){
 
+        if(!req.body.id){
+            return res.status(400).json(errorResponse('id required!', 400));
+        }
+        if(!req.body.password){
+            return res.status(400).json(errorResponse('password  required!', 400));
+        }
+
+        Refugee.findOne({ id : req.body.id }, function(error, data){
+
+                if(error) return res.status(503).json(errorResponse(error, 503));;
+
+                if(data !== null){
+
+                    if(req.body.password == data.password){
+                        var myToken = jwt.sign({ username : req.body.id }, 'Medair help app');
+
+                        redisClient.get(data.id, function(err,datareply){
+
+                            if(datareply!==null) {
+                                return res.status(200).json({token:datareply, id:data.id});
+                            }
+                            else {
+                                redisClient.set(data.id, myToken, function(err,reply){
+                                    console.log("reply from redis -> "+reply);
+                                    if(reply!=null) {
+                                       return res.status(200).json({token:myToken, userid:data.id});
+                                    }
+                                    else {
+                                        return res.status(503).json(errorResponse('Redis Service is unavailable', 503));
+                                    }
+                                });
+                            } 
+                        });
+
+                    }
+                }
+            else
+                return res.status(401).json(errorResponse('Invalid Input!', 401));
+            });
+    });
+
+    app.put('/api/refugee/:id/logout', function(req, res) {
+        var id = req.params.id;
+
+        redisClient.del(id, function(err, reply) {
+            if(err) return res.status(401).json(errorResponse('Invalid Input!', 401));
+            else {
+                return res.status(200).json({logout:"true"});
+            }
+        });
+    });
 /*
 	URL:http://localhost:3000/api/refugee/getAll
 	Type: GET
