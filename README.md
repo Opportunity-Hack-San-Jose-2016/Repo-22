@@ -13,6 +13,6 @@ Requirements:
 Install MongoDB, Redis and Nodejs and NPM.
 
 How to run the project:
-1) Install dependencies using 'npm install'
-2) Run server using 'node server.js'
-3) Run 'npm start' to start the frontend webapp.
+* Install dependencies using `npm install`
+* Run server using `node server.js`
+* Run `npm start` to start the frontend webapp.
